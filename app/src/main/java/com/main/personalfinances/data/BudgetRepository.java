@@ -8,15 +8,12 @@ import com.main.personalfinances.db.PersonalFinancesDatabase;
 
 public class BudgetRepository {
     private BudgetDao mBudgetDao;
-
-    private UserDao mUserDao;
     private LiveData<Double> mGetAmount;
 
-    BudgetRepository(Application application) {
+    BudgetRepository(Application application, int userId) {
         PersonalFinancesDatabase db = PersonalFinancesDatabase.getDatabase(application);
         mBudgetDao = db.budgetDao();
-        mUserDao = db.userDao();
-        mGetAmount = mBudgetDao.getAmount(mUserDao.getUserId().getValue());
+        mGetAmount = mBudgetDao.getAmount(userId);
     }
 
     LiveData<Double> getAmount() {

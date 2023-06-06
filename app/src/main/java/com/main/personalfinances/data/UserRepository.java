@@ -11,17 +11,17 @@ public class UserRepository {
     private UserDao mUserDao;
     private LiveData<User> mUser;
 
-    UserRepository(Application application) {
+    public UserRepository(Application application) {
         PersonalFinancesDatabase db = PersonalFinancesDatabase.getDatabase(application);
         mUserDao = db.userDao();
         mUser = mUserDao.getUser();
     }
 
-    LiveData<User> getUser() {
+    public LiveData<User> getUser() {
         return mUser;
     }
 
-    void insert(User user) {
+    public void insert(User user) {
         PersonalFinancesDatabase.databaseWriteExecutor.execute(() -> {
             mUserDao.insert(user);
         });
