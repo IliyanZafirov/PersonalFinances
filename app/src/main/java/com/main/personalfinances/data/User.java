@@ -32,13 +32,13 @@ public class User {
         this.budgetId = budgetId;
     }
 
-    public Budget getBudget() {
-        return budget;
-    }
-
-    public void setBudget(Budget budget) {
-        this.budget = budget;
-    }
+//    public Budget getBudget() {
+//        return budget;
+//    }
+//
+//    public void setBudget(Budget budget) {
+//        this.budget = budget;
+//    }
 
     public int getSavingsId() {
         return savingsId;
@@ -48,21 +48,21 @@ public class User {
         this.savingsId = savingsId;
     }
 
-    public Savings getSavings() {
-        return savings;
-    }
+//    public Savings getSavings() {
+//        return savings;
+//    }
+//
+//    public void setSavings(Savings savings) {
+//        this.savings = savings;
+//    }
 
-    public void setSavings(Savings savings) {
-        this.savings = savings;
-    }
-
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
-    }
+//    public List<Transaction> getTransactions() {
+//        return transactions;
+//    }
+//
+//    public void setTransactions(List<Transaction> transactions) {
+//        this.transactions = transactions;
+//    }
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -71,16 +71,16 @@ public class User {
 
     private int budgetId;
 
-    @Relation(parentColumn = "budgetId", entityColumn = "id", entity = Budget.class)
-    private Budget budget;
+    //@Relation(parentColumn = "budgetId", entityColumn = "id", entity = Budget.class)
+    //private Budget budget;
 
     private int savingsId;
 
-    @Relation(parentColumn = "savingsId", entityColumn = "id", entity = Savings.class)
-    private Savings savings;
+    //@Relation(parentColumn = "savingsId", entityColumn = "id", entity = Savings.class)
+    //private Savings savings;
 
-    @Relation(parentColumn = "id", entityColumn = "userId", entity = Transaction.class)
-    private List<Transaction> transactions;
+    //@Relation(parentColumn = "id", entityColumn = "userId", entity = Transaction.class)
+    //private List<Transaction> transactions;
 
     public User(String name, int budgetId, int savingsId) {
         this.name = name;

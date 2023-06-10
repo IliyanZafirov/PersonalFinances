@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", (dialog, which) -> {
             String userName = input.getText().toString().trim();
             if (!userName.isEmpty()) {
-                User newUser = new User(userName, 1, 1, 1);
+                User newUser = new User(userName, 1, 1);
                 databaseWriteExecutor.execute(() -> {
                     appDatabase.userDao().insert(newUser);
                     runOnUiThread(() -> updateGreetingText(newUser));
