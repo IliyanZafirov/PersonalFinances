@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background_color">#008080</color>
+    <color name="purple_grad">#787FF6</color>
+    <color name="yellow_canary">#FBE106</color>
+    <color name="yellow_canary_variant">#FFD700</color>
+    <color name="yellow_accent">#8B8000</color>
 </resources>

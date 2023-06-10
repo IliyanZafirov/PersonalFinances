@@ -6,23 +6,22 @@ import androidx.lifecycle.LiveData;
 
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 
-public class BudgetRepository {
-    private BudgetDao mBudgetDao;
+public class SavingsRepository {
+    private SavingsDao mSavingsDao;
     private LiveData<Double> mGetAmount;
 
-    BudgetRepository(Application application, int userId) {
+    SavingsRepository(Application application, int userId) {
         PersonalFinancesDatabase db = PersonalFinancesDatabase.getDatabase(application);
-        mBudgetDao = db.budgetDao();
-        mGetAmount = mBudgetDao.getAmountById(userId);
+        mSavingsDao = db.savingsDao();
     }
 
     LiveData<Double> getAmountById() {
         return mGetAmount;
     }
 
-    void insert(Budget budget) {
+    void insert(Savings savings) {
         PersonalFinancesDatabase.databaseWriteExecutor.execute(() -> {
-            mBudgetDao.insert(budget);
+            mSavingsDao.insert(savings);
         });
     }
 }

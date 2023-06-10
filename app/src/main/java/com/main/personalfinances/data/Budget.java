@@ -19,15 +19,18 @@ public class Budget {
         return id;
     }
 
+    public double getAmount() { return amount;}
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public double getAmount(int id) {
+    public double getAmountById(int id) {
         return this.id == id ? amount:-1;
     }
 
     public void setAmount(double amount) {
         this.amount = amount;
     }
+
 }

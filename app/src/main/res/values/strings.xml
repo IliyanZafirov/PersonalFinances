@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">PersonalFinances</string>
+    <string name="app_name">Personal Finance</string>
+    <string name="hello_dear_user">Hello!</string>
+    <string name="budget">Budget</string>
+    <string name="transactions">Transactions</string>
+    <string name="savings">Savings</string>
+    <string name="your_budget">Your budget</string>
+    <string name="home_activity_button_description">Go to home activity</string>
+    <string name="edit_user_name">Edit user name</string>
+    <string name="set_savings_goal">Savings goal:</string>
+    <string name="add_money">Add Money</string>
+    <string name="edit_savings_goal">Set new savings goal</string>
+
 </resources>

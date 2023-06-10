@@ -19,6 +19,6 @@ public interface BudgetDao {
     @Delete
     void delete(Budget budget);
 
-    @Query("SELECT budget_table.amount FROM budget_table INNER JOIN user_table ON id = budgetId WHERE user_table.id = :userId")
-    LiveData<Double> getAmount(int userId);
+    @Query("SELECT budget_table.amount FROM budget_table INNER JOIN user_table ON user_table.budgetId = budget_table.id WHERE user_table.id = :userId")
+    LiveData<Double> getAmountById(int userId);
 }
