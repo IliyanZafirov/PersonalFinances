@@ -71,16 +71,16 @@ public class User {
 
     private int budgetId;
 
-    //@Relation(parentColumn = "budgetId", entityColumn = "id", entity = Budget.class)
-    //private Budget budget;
+//    @Relation(parentColumn = "budgetId", entityColumn = "id", entity = Budget.class)
+//    private Budget budget;
 
     private int savingsId;
 
-    //@Relation(parentColumn = "savingsId", entityColumn = "id", entity = Savings.class)
-    //private Savings savings;
-
-    //@Relation(parentColumn = "id", entityColumn = "userId", entity = Transaction.class)
-    //private List<Transaction> transactions;
+//    @Relation(parentColumn = "savingsId", entityColumn = "id", entity = Savings.class)
+//    private Savings savings;
+//
+//    @Relation(parentColumn = "id", entityColumn = "userId", entity = Transaction.class)
+//    private List<Transaction> transactions;
 
     public User(String name, int budgetId, int savingsId) {
         this.name = name;
