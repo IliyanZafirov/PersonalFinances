@@ -12,4 +12,6 @@
     <color name="yellow_canary">#FBE106</color>
     <color name="yellow_canary_variant">#FFD700</color>
     <color name="yellow_accent">#8B8000</color>
+    <color name="light_blue">#66C3D0</color>
+    <color name="medium_red">#D12524</color>
 </resources>
