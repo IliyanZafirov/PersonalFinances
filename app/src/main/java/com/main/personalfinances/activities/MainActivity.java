@@ -44,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
         userViewModel.init(appDatabase.userDao());
         userViewModel.getUser().observe(this, this::updateGreetingText);
 
+        String currentDBPath = getDatabasePath("personalFinances_database").getAbsolutePath();
+
+        if(currentDBPath.equals("")) {
+            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        }else{
+            System.out.println(currentDBPath);
+        };
+
         ImageButton editNameButton = findViewById(R.id.edit_name_image_button);
         editNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
