@@ -36,7 +36,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        appDatabase = PersonalFinancesDatabase.getDatabase(this);
+        try {
+            appDatabase = PersonalFinancesDatabase.getDatabase(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         greetingTextView = findViewById(R.id.greeting_textview);
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
@@ -44,15 +48,17 @@ public class MainActivity extends AppCompatActivity {
         userViewModel.init(appDatabase.userDao());
         userViewModel.getUser().observe(this, this::updateGreetingText);
 
-        String currentDBPath = getDatabasePath("personalFinances_database").getAbsolutePath();
-
-        if(currentDBPath.equals("")) {
-            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-        }else{
-            System.out.println(currentDBPath);
-        };
+//        String currentDBPath = getDatabasePath("personalFinances_database").getAbsolutePath();
+//
+//        if(currentDBPath.equals("")) {
+//            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+//        }else{
+//            System.out.println(currentDBPath);
+//        };
 
         ImageButton editNameButton = findViewById(R.id.edit_name_image_button);
+
+
         editNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        databaseWriteExecutor.execute(() -> {
-            appDatabase.dropDatabase();
-        });
+//        databaseWriteExecutor.execute(() -> {
+//            appDatabase.dropDatabase();
+//        });
     }
 
     private void promptForUserNameUpdate() {
