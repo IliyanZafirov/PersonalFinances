@@ -14,16 +14,17 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
 
         <ImageButton
-            android:id="@+id/budgetButton"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
+            android:id="@+id/savings_to_main_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_home"
             android:background="?attr/selectableItemBackground"
             android:onClick="goToMain"
@@ -31,20 +32,5 @@
             android:layout_gravity="end"/>
 
     </androidx.appcompat.widget.Toolbar>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        app:srcCompat="@drawable/ic_budget_icon_plus_frame"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="150dp" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        app:srcCompat="@drawable/ic_button_transparent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

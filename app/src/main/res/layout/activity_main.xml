@@ -49,16 +49,16 @@
         android:id="@+id/budgetButton"
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/medium_red"
         android:drawableLeft="@drawable/ic_budget_white"
         android:drawablePadding="@dimen/padding_medium"
         android:fontFamily="cursive"
-        android:text="@string/budget"
         android:onClick="goToBudget"
+        android:text="@string/budget"
         android:textAlignment="textStart"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_large"
-        android:backgroundTint="@color/medium_red"
         app:layout_constraintBottom_toTopOf="@+id/transactionsButton"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -81,23 +81,23 @@
         app:layout_constraintBottom_toTopOf="@+id/savingsButton"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <Button
         android:id="@+id/savingsButton"
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/medium_red"
         android:drawableLeft="@drawable/ic_savings_white"
         android:fontFamily="cursive"
+        android:onClick="goToSavings"
         android:text="@string/savings"
         android:textAlignment="textStart"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_large"
-        android:onClick="goToSavings"
-        android:backgroundTint="@color/medium_red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
     <ImageView
         android:id="@+id/imageView5"

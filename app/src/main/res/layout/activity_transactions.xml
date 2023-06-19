@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/padding_medium"
-    android:background="@drawable/bg_main_background">
+    android:background="@drawable/bg_main_background"
+    android:padding="@dimen/padding_medium">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/transactions_toolbar"
@@ -14,22 +14,25 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
 
         <ImageButton
             android:id="@+id/transactions_to_main_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_home"
+            android:layout_gravity="end"
             android:background="?attr/selectableItemBackground"
-            android:onClick="goToMain"
             android:contentDescription="@string/home_activity_button_description"
-            android:layout_gravity="end"/>
+            android:onClick="goToMain"
+            android:src="@drawable/ic_home" />
 
     </androidx.appcompat.widget.Toolbar>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
