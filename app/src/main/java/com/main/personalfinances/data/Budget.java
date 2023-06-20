@@ -1,36 +1,57 @@
 package com.main.personalfinances.data;
 
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity (tableName = "budget_table")
+@Entity(tableName = "budget")
 public class Budget {
-
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private double amount;
+    private int userId;
 
-    public Budget (double amount) {
-        this.amount = amount;
+    private double startingAmount;
+
+    private double currentAmount;
+
+    public Budget() {
+
+    }
+    public Budget(int userId, double startingAmount) {
+        this.userId = userId;
+        this.startingAmount = startingAmount;
     }
 
     public int getId() {
         return id;
     }
 
-    public double getAmount() { return amount;}
-
     public void setId(int id) {
         this.id = id;
     }
 
-    public double getAmountById(int id) {
-        return this.id == id ? amount:-1;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
+    public double getStartingAmount() {
+        return startingAmount;
+    }
+
+    public void setStartingAmount(double startingAmount) {
+        this.startingAmount = startingAmount;
+    }
+
+    public double getCurrentAmount() {
+        return currentAmount;
+    }
+
+    public void setCurrentAmount(double currentAmount) {
+        this.currentAmount = currentAmount;
+    }
 }

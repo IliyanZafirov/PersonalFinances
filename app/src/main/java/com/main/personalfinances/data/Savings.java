@@ -1,16 +1,44 @@
 package com.main.personalfinances.data;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "savings_table")
+@Entity(tableName = "savings")
 public class Savings {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private Double savingsGoal;
-    private Double currentSavingsAmount;
+
+    private int userId;
+
+    private double targetAmount;
+
+    private double currentAmount;
+
+    public Savings() {
+
+    }
+    public Savings(int userId) {
+        this.userId = userId;
+    }
+
+    public double getTargetAmount() {
+        return targetAmount;
+    }
+
+    public void setTargetAmount(double targetAmount) {
+        this.targetAmount = targetAmount;
+    }
+
+    public double getCurrentAmount() {
+        return currentAmount;
+    }
+
+    public void setCurrentAmount(double currentAmount) {
+        this.currentAmount = currentAmount;
+    }
 
     public int getId() {
         return id;
@@ -20,19 +48,11 @@ public class Savings {
         this.id = id;
     }
 
-    public Double getSavingsGoal() {
-        return savingsGoal;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setSavingsGoal(Double savingsGoal) {
-        this.savingsGoal = savingsGoal;
-    }
-
-    public Double getCurrentSavingsAmount() {
-        return currentSavingsAmount;
-    }
-
-    public void setCurrentSavingsAmount(Double currentSavingsAmount) {
-        this.currentSavingsAmount = currentSavingsAmount;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

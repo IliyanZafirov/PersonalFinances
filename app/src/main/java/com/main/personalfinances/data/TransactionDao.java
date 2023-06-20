@@ -4,5 +4,4 @@ import androidx.room.Dao;
 
 @Dao
 public interface TransactionDao {
-
 }
