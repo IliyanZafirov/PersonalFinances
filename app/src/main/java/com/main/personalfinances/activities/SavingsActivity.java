@@ -26,9 +26,6 @@ public class SavingsActivity extends AppCompatActivity {
 
     private TextView saved_amount_text_view;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

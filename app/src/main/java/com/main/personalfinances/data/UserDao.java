@@ -16,7 +16,7 @@ public interface UserDao {
     void deleteUser(User user);
 
     @Update
-    void updateUser(User user);
+    void update(User user);
 
     @Query("SELECT * FROM users WHERE id = :userId")
     LiveData<User> getUser(int userId);
