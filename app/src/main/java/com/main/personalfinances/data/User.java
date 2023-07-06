@@ -21,6 +21,9 @@ public class User {
 
     private String name;
 
+    private int savingsId;
+
+
     public int getId() {
         return id;
     }
@@ -35,6 +38,15 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    public int getSavingsId() {
+        return savingsId;
+    }
+
+    public void setSavingsId(int savingsId) {
+        this.savingsId = savingsId;
     }
 
 

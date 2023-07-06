@@ -1,9 +1,9 @@
 package com.main.personalfinances.data;
 
-import androidx.room.Embedded;
-import androidx.room.Relation;
+        import androidx.room.Embedded;
+        import androidx.room.Relation;
 
-import java.util.List;
+        import java.util.List;
 
 public class UserWithTransactions {
     @Embedded public User user;

@@ -21,7 +21,7 @@ import com.main.personalfinances.data.UserDao;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Budget.class, Transaction.class, Savings.class}, version = 8, exportSchema = false)
+@Database(entities = {User.class, Budget.class, Transaction.class, Savings.class}, version = 100, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class PersonalFinancesDatabase extends RoomDatabase {
 
@@ -40,7 +40,7 @@ public abstract class PersonalFinancesDatabase extends RoomDatabase {
             synchronized (PersonalFinancesDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            PersonalFinancesDatabase.class, "personalFinances_database")
+                            PersonalFinancesDatabase.class, "personalFinances_database1")
                             .fallbackToDestructiveMigration()
                             .build();
                 }
