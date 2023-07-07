@@ -24,7 +24,7 @@
         </activity>
         <activity android:name=".activities.BudgetActivity" />
         <activity android:name=".activities.SavingsActivity" />
-        <activity android:name=".activities.TransactionsActivity" />
+        <activity android:name=".activities.ExpensesActivity" />
     </application>
 
 

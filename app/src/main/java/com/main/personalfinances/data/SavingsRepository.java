@@ -1,0 +1,17 @@
+package com.main.personalfinances.data;
+
+import com.main.personalfinances.daos.SavingsDao;
+
+public class SavingsRepository {
+    SavingsDao savingsDao;
+
+    public SavingsRepository(SavingsDao savingsDao) { this.savingsDao = savingsDao; }
+
+
+    public void insertSavings(Savings savings) { savingsDao.insertSavings(savings);}
+
+    public void updateSavings(Savings savings) { savingsDao.updateSavings(savings); }
+
+    public void deleteSavings(Savings savings) { savingsDao.deleteSavings(savings); }
+
+}

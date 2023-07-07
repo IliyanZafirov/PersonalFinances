@@ -4,7 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,7 +17,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.main.personalfinances.R;
+import com.main.personalfinances.daos.BudgetDao;
+import com.main.personalfinances.daos.SavingsDao;
+import com.main.personalfinances.data.Budget;
+import com.main.personalfinances.data.BudgetRepository;
 import com.main.personalfinances.data.Savings;
+import com.main.personalfinances.data.SavingsRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 
 import java.util.concurrent.ExecutorService;
@@ -27,6 +31,18 @@ import java.util.concurrent.Executors;
 public class MainActivity extends AppCompatActivity {
 
     private PersonalFinancesDatabase appDatabase;
+
+    private AlertDialog nameUpdateDialog;
+
+    private AlertDialog nameInsertDialog;
+
+    BudgetDao budgetDao;
+
+    BudgetRepository budgetRepository;
+
+    SavingsDao savingsDao;
+
+    SavingsRepository savingsRepository;
 
     SharedPreferences userSharedPref;
 
@@ -43,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             appDatabase = PersonalFinancesDatabase.getDatabase(this);
+            budgetDao = appDatabase.budgetDao();
+            budgetRepository = new BudgetRepository(budgetDao);
+            savingsDao = appDatabase.savingsDao();
+            savingsRepository = new SavingsRepository(savingsDao);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,7 +73,20 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton editNameButton = findViewById(R.id.edit_name_image_button);
 
+
         userAuthenticate();
+
+        databaseWriteExecutor.execute(()-> {
+            Budget existingBudget = budgetRepository.getBudget();
+            if(existingBudget == null) {
+                Budget newBudget = new Budget(10000);
+                long budgetId = budgetRepository.insertBudget(newBudget);
+
+                Savings savings = new Savings(budgetId, 1000);
+                savingsRepository.insertSavings(savings);
+            }
+        });
+
 
         editNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,14 +118,13 @@ public class MainActivity extends AppCompatActivity {
 
                 greetingTextView.setText("Hello, " + username);
 
-
             }
         });
 
         builder.setNegativeButton("Cancel", null);
 
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        nameUpdateDialog = builder.create();
+        nameUpdateDialog.show();
     }
 
 
@@ -121,8 +153,8 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setCancelable(false);
 
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        nameInsertDialog = builder.create();
+        nameInsertDialog.show();
     }
 
     public void userAuthenticate() {
@@ -145,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToTransactions(View view) {
-        Intent intent = new Intent(this, TransactionsActivity.class);
+        Intent intent = new Intent(this, ExpensesActivity.class);
         startActivity(intent);
     }
 
@@ -154,6 +186,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (nameUpdateDialog != null && nameUpdateDialog.isShowing()) {
+            nameUpdateDialog.dismiss();
+        }
+        if (nameInsertDialog != null && nameInsertDialog.isShowing()) {
+            nameInsertDialog.dismiss();
+        }
         if (databaseWriteExecutor != null) {
             databaseWriteExecutor.shutdown();
         }

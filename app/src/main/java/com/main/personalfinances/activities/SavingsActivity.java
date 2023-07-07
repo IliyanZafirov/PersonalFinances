@@ -56,8 +56,6 @@ public class SavingsActivity extends AppCompatActivity {
 
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
 
-
-
     }
 
 

@@ -5,7 +5,7 @@ import androidx.room.Relation;
 
 import java.util.List;
 
-public class BudgetWithSavings {
+public class BudgetWithExpenses {
     @Embedded public Budget budget;
     @Relation(
             parentColumn = "id",

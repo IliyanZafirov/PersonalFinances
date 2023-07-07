@@ -8,9 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.main.personalfinances.R;
-import com.main.personalfinances.activities.MainActivity;
 
-public class TransactionsActivity extends AppCompatActivity {
+public class ExpensesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
