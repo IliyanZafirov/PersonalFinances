@@ -1,6 +1,7 @@
 package com.main.personalfinances.data;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -21,8 +22,16 @@ public class User {
 
     private String name;
 
-    private int savingsId;
+    @Embedded
+    private Savings savings;
 
+    public Savings getSavings() {
+        return savings;
+    }
+
+    public void setSavings(Savings savings) {
+        this.savings = savings;
+    }
 
     public int getId() {
         return id;
@@ -39,15 +48,4 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-
-
-    public int getSavingsId() {
-        return savingsId;
-    }
-
-    public void setSavingsId(int savingsId) {
-        this.savingsId = savingsId;
-    }
-
-
 }

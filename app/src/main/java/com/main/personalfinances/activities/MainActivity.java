@@ -16,8 +16,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.main.personalfinances.R;
+import com.main.personalfinances.data.Savings;
 import com.main.personalfinances.data.User;
-import com.main.personalfinances.data.UserDao;
+import com.main.personalfinances.daos.UserDao;
 import com.main.personalfinances.data.UserRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 
@@ -133,6 +134,10 @@ public class MainActivity extends AppCompatActivity {
                         databaseWriteExecutor.execute(() -> {
                             User newUser = new User(enteredName);
                             userRepository.insertUser(newUser);
+
+                            Savings savings = new Savings();
+                            savings.setUserId(newUser.getId());
+                            userRepository.insertSavings(savings);
 
                             // Update the greetingTextView with the new user's name
                             runOnUiThread(() -> greetingTextView.setText("Hello, " + enteredName));

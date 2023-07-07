@@ -1,7 +1,8 @@
 package com.main.personalfinances.data;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.Update;
+
+import com.main.personalfinances.daos.UserDao;
 
 public class UserRepository {
     private UserDao userDao;
@@ -37,5 +38,9 @@ public class UserRepository {
 
     public LiveData<UserAndSavings> getUserAndSavings(int userId) {
         return userDao.getUserAndSavings(userId);
+    }
+
+    public void insertSavings(Savings savings) {
+        userDao.insertSavings(savings);
     }
 }

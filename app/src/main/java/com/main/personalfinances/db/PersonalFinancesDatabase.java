@@ -10,18 +10,18 @@ import androidx.room.TypeConverters;
 
 import com.main.personalfinances.converter.DateConverter;
 import com.main.personalfinances.data.Budget;
-import com.main.personalfinances.data.BudgetDao;
+import com.main.personalfinances.daos.BudgetDao;
 import com.main.personalfinances.data.Savings;
-import com.main.personalfinances.data.SavingsDao;
+import com.main.personalfinances.daos.SavingsDao;
 import com.main.personalfinances.data.Transaction;
-import com.main.personalfinances.data.TransactionDao;
+import com.main.personalfinances.daos.TransactionDao;
 import com.main.personalfinances.data.User;
-import com.main.personalfinances.data.UserDao;
+import com.main.personalfinances.daos.UserDao;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Budget.class, Transaction.class, Savings.class}, version = 100, exportSchema = false)
+@Database(entities = {User.class, Budget.class, Transaction.class, Savings.class}, version = 103, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class PersonalFinancesDatabase extends RoomDatabase {
 

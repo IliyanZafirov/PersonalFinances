@@ -19,7 +19,7 @@ import com.main.personalfinances.R;
 import com.main.personalfinances.data.Savings;
 import com.main.personalfinances.data.User;
 import com.main.personalfinances.data.UserAndSavings;
-import com.main.personalfinances.data.UserDao;
+import com.main.personalfinances.daos.UserDao;
 import com.main.personalfinances.data.UserRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 

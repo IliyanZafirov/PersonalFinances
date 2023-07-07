@@ -7,10 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "savings")
 public class Savings {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
-
-
+    @PrimaryKey
     private int userId;
 
     private double targetAmount;
@@ -40,13 +37,6 @@ public class Savings {
         this.currentAmount = currentAmount;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getUserId() {
         return userId;
