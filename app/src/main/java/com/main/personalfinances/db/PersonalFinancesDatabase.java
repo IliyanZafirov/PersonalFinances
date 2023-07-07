@@ -13,21 +13,19 @@ import com.main.personalfinances.data.Budget;
 import com.main.personalfinances.daos.BudgetDao;
 import com.main.personalfinances.data.Savings;
 import com.main.personalfinances.daos.SavingsDao;
-import com.main.personalfinances.data.Transaction;
-import com.main.personalfinances.daos.TransactionDao;
-import com.main.personalfinances.data.User;
-import com.main.personalfinances.daos.UserDao;
+import com.main.personalfinances.data.Expense;
+import com.main.personalfinances.daos.ExpenseDao;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Budget.class, Transaction.class, Savings.class}, version = 103, exportSchema = false)
+@Database(entities = {Budget.class, Expense.class, Savings.class}, version = 105, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class PersonalFinancesDatabase extends RoomDatabase {
 
-    public abstract UserDao userDao();
+
     public abstract BudgetDao budgetDao();
-    public abstract TransactionDao transactionDao();
+    public abstract ExpenseDao expenseDao();
     public abstract SavingsDao savingsDao();
 
     private static volatile PersonalFinancesDatabase INSTANCE;
@@ -40,7 +38,7 @@ public abstract class PersonalFinancesDatabase extends RoomDatabase {
             synchronized (PersonalFinancesDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            PersonalFinancesDatabase.class, "personalFinances_database1")
+                            PersonalFinancesDatabase.class, "personalFinance_database")
                             .fallbackToDestructiveMigration()
                             .build();
                 }
@@ -51,6 +49,5 @@ public abstract class PersonalFinancesDatabase extends RoomDatabase {
     public void dropDatabase() {
         clearAllTables();
     }
-
 
 }

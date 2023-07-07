@@ -3,11 +3,11 @@ package com.main.personalfinances.data;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
-public class UserAndBudget {
-    @Embedded public User user;
+public class BudgetAndSavings {
+    @Embedded public Budget budget;
     @Relation(
             parentColumn = "id",
-            entityColumn = "userId"
+            entityColumn = "budgetId"
     )
-    public Budget budget;
+    public Savings savings;
 }

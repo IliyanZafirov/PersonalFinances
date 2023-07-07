@@ -6,8 +6,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -17,9 +19,6 @@ import android.widget.TextView;
 
 import com.main.personalfinances.R;
 import com.main.personalfinances.data.Savings;
-import com.main.personalfinances.data.User;
-import com.main.personalfinances.daos.UserDao;
-import com.main.personalfinances.data.UserRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 
 import java.util.concurrent.ExecutorService;
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private PersonalFinancesDatabase appDatabase;
 
-    private UserRepository userRepository;
+    SharedPreferences userSharedPref;
 
     private TextView greetingTextView;
     private ExecutorService databaseWriteExecutor;
@@ -44,26 +43,17 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             appDatabase = PersonalFinancesDatabase.getDatabase(this);
-            UserDao userDao = appDatabase.userDao();
-            userRepository = new UserRepository(userDao);
         } catch (Exception e) {
             e.printStackTrace();
         }
         greetingTextView = findViewById(R.id.greeting_textview);
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
 
-
+        userSharedPref = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
 
         ImageButton editNameButton = findViewById(R.id.edit_name_image_button);
-        LiveData<User> userLiveData = userRepository.getUser(1);
-        userLiveData.observe(this, user -> {
-            if (user != null) {
-                String userName = user.getName();
-                greetingTextView.setText("Hello, " + userName);
-            } else {
-                promptUserForName();
-            }
-        });
+
+        userAuthenticate();
 
         editNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,9 +62,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        databaseWriteExecutor.execute(() -> {
-//            appDatabase.dropDatabase();
-//        });
+
     }
 
     private void promptUserForNameUpdate() {
@@ -89,22 +77,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String enteredName = input.getText().toString();
+                SharedPreferences.Editor editor = userSharedPref.edit();
+                editor.putString("1", enteredName);
+                editor.apply();
 
-                LiveData<User> userLiveData = userRepository.getUser(1);
-                userLiveData.observe(MainActivity.this, new Observer<User>() {
-                    @Override
-                    public void onChanged(User existingUser) {
-                        if (existingUser != null) {
-                            existingUser.setName(enteredName);
+                String username = userSharedPref.getString("1", "User");
 
-                            databaseWriteExecutor.execute(() -> {
-                                userRepository.update(existingUser);
+                greetingTextView.setText("Hello, " + username);
 
-                                runOnUiThread(() -> greetingTextView.setText("Hello, " + enteredName));
-                            });
-                        }
-                    }
-                });
+
             }
         });
 
@@ -119,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Enter your name:");
 
-        // Create an EditText widget programmatically
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
@@ -127,21 +107,16 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        // Retrieve the entered name from the EditText
+
                         String enteredName = input.getText().toString();
 
-                        // Insert the new user into the database
-                        databaseWriteExecutor.execute(() -> {
-                            User newUser = new User(enteredName);
-                            userRepository.insertUser(newUser);
+                        SharedPreferences.Editor editor = userSharedPref.edit();
+                        editor.putString("1", enteredName);
+                        editor.apply();
 
-                            Savings savings = new Savings();
-                            savings.setUserId(newUser.getId());
-                            userRepository.insertSavings(savings);
+                        String username = userSharedPref.getString("1", "User");
 
-                            // Update the greetingTextView with the new user's name
-                            runOnUiThread(() -> greetingTextView.setText("Hello, " + enteredName));
-                        });
+                        greetingTextView.setText("Hello, " + username);
                     }
                 })
                 .setCancelable(false);
@@ -150,7 +125,14 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-
+    public void userAuthenticate() {
+        if(userSharedPref.getString("1","User").equals("User")) {
+            promptUserForName();
+        } else {
+            String username = userSharedPref.getString("1", "User");
+            greetingTextView.setText("Hello, " + username);
+        }
+    }
 
     public void goToBudget(View view) {
         Intent intent = new Intent(this, BudgetActivity.class);

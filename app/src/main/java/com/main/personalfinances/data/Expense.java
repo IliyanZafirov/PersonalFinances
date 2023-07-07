@@ -8,14 +8,13 @@ import com.main.personalfinances.enums.TransactionCategory;
 import java.util.Date;
 
 @Entity(tableName = "transactions")
-public class Transaction {
+public class Expense {
 
 
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private int userId;
-
+    private int budgetId;
     private TransactionCategory category;
 
     private Date purchaseDate;
@@ -24,13 +23,13 @@ public class Transaction {
 
     private double price;
 
-    public Transaction() {
+    public Expense() {
 
     }
 
-    public Transaction(int userId, TransactionCategory category, Date purchaseDate,
-                       Date dueDate, double price) {
-        this.userId = userId;
+    public Expense(int budgetId, TransactionCategory category, Date purchaseDate,
+                   Date dueDate, double price) {
+        this.budgetId = budgetId;
         this.category = category;
         this.purchaseDate = purchaseDate;
         this.dueDate = dueDate;
@@ -45,13 +44,6 @@ public class Transaction {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public TransactionCategory getCategory() {
         return category;
@@ -83,5 +75,13 @@ public class Transaction {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getBudgetId() {
+        return budgetId;
+    }
+
+    public void setBudgetId(int budgetId) {
+        this.budgetId = budgetId;
     }
 }

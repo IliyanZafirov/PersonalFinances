@@ -9,7 +9,6 @@ public class Budget {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private int userId;
 
     private double startingAmount;
 
@@ -18,8 +17,7 @@ public class Budget {
     public Budget() {
 
     }
-    public Budget(int userId, double startingAmount) {
-        this.userId = userId;
+    public Budget(double startingAmount) {
         this.startingAmount = startingAmount;
     }
 
@@ -31,13 +29,6 @@ public class Budget {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public double getStartingAmount() {
         return startingAmount;

@@ -8,7 +8,16 @@ import androidx.room.PrimaryKey;
 public class Savings {
 
     @PrimaryKey
-    private int userId;
+    private int id;
+
+    private int budgetId;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     private double targetAmount;
 
@@ -17,8 +26,8 @@ public class Savings {
     public Savings() {
 
     }
-    public Savings(int userId) {
-        this.userId = userId;
+    public Savings(double targetAmount) {
+        this.targetAmount = targetAmount;
     }
 
     public double getTargetAmount() {
@@ -38,11 +47,11 @@ public class Savings {
     }
 
 
-    public int getUserId() {
-        return userId;
+    public int getBudgetId() {
+        return budgetId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setBudgetId(int budgetId) {
+        this.budgetId = budgetId;
     }
 }
