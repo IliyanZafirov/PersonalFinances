@@ -19,6 +19,7 @@ public class Budget {
     }
     public Budget(double startingAmount) {
         this.startingAmount = startingAmount;
+        currentAmount = startingAmount;
     }
 
     public int getId() {
@@ -40,6 +41,12 @@ public class Budget {
 
     public double getCurrentAmount() {
         return currentAmount;
+    }
+
+    public void pay(double amountToPay) {
+        if(amountToPay > 0 && amountToPay < currentAmount) {
+            currentAmount = currentAmount - amountToPay;
+        }
     }
 
     public void setCurrentAmount(double currentAmount) {

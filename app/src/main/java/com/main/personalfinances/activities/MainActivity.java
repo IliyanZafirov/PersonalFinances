@@ -3,7 +3,7 @@ package com.main.personalfinances.activities;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -82,8 +82,9 @@ public class MainActivity extends AppCompatActivity {
                 Budget newBudget = new Budget(10000);
                 long budgetId = budgetRepository.insertBudget(newBudget);
 
-                Savings savings = new Savings(budgetId, 1000);
-                savingsRepository.insertSavings(savings);
+                Savings savings = new Savings(budgetId, 0);
+                long savingsId = savingsRepository.insertSavings(savings);
+
             }
         });
 

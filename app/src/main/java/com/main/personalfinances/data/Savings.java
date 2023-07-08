@@ -8,10 +8,10 @@ import androidx.room.PrimaryKey;
 public class Savings {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private long id;
 
     private long budgetId;
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -32,6 +32,11 @@ public class Savings {
 
     }
 
+    public void addMoney(double moneyToAdd) {
+        if(moneyToAdd > 0 ) {
+            currentAmount = currentAmount + moneyToAdd;
+        }
+    }
     public double getTargetAmount() {
         return targetAmount;
     }

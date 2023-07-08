@@ -44,7 +44,7 @@
         android:padding="8dp"
         android:text="@string/set_savings_goal"
         android:textColor="@color/white"
-        android:textSize="36sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/savings_toolbar" />
 
@@ -60,12 +60,12 @@
         android:text="Saved amount: "
         android:textAlignment="textStart"
         android:textColor="@color/white"
-        android:textSize="36sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/savings_goal" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/add_money_button"
         android:layout_width="250dp"
         android:layout_height="86dp"
         android:layout_marginStart="55dp"
@@ -73,7 +73,7 @@
         android:background="@color/medium_red"
         android:fontFamily="cursive"
         android:text="@string/add_money"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/saved_amount" />

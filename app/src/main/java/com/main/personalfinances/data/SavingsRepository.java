@@ -8,10 +8,12 @@ public class SavingsRepository {
     public SavingsRepository(SavingsDao savingsDao) { this.savingsDao = savingsDao; }
 
 
-    public void insertSavings(Savings savings) { savingsDao.insertSavings(savings);}
+    public long insertSavings(Savings savings) { return savingsDao.insertSavings(savings);}
 
     public void updateSavings(Savings savings) { savingsDao.updateSavings(savings); }
 
     public void deleteSavings(Savings savings) { savingsDao.deleteSavings(savings); }
+
+    public Savings getSavings() { return savingsDao.getSavings(); }
 
 }
