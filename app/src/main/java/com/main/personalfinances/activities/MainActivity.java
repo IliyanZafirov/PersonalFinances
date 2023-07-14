@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         databaseWriteExecutor.execute(()-> {
             Budget existingBudget = budgetRepository.getBudget();
             if(existingBudget == null) {
-                Budget newBudget = new Budget(10000);
+                Budget newBudget = new Budget(0);
                 long budgetId = budgetRepository.insertBudget(newBudget);
 
                 Savings savings = new Savings(budgetId, 0);

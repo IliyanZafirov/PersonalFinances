@@ -9,6 +9,10 @@
     <string name="edit_user_name">Edit user name</string>
     <string name="set_savings_goal">Savings goal:</string>
     <string name="add_money">Add Money</string>
-    <string name="edit_savings_goal">Set new savings goal</string>
+    <string name="update_budget">Update Budget</string>
+    <string name="edit_savings_goal">Set savings goal</string>
+    <string name="monthly_budget">Monthly Budget:</string>
+    <string name="current_budget">Current Budget:</string>
+
 
 </resources>

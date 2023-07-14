@@ -114,8 +114,10 @@ public class SavingsActivity extends AppCompatActivity {
                     databaseWriteExecutor.execute(()-> {
                         Savings savings = savingsRepository.getSavings();
                         savings.setTargetAmount(Double.valueOf(newGoal));
+                        savings.setCurrentAmount(0);
                         savingsRepository.updateSavings(savings);
                         savings_goal_text_view.setText("Savings goal: " + savings.getTargetAmount());
+                        saved_amount_text_view.setText("Saved amount: " + savings.getCurrentAmount());
 
                     });
                 } else {
@@ -155,11 +157,18 @@ public class SavingsActivity extends AppCompatActivity {
                     databaseWriteExecutor.execute(()-> {
                         Budget budget = budgetRepository.getBudget();
                         Savings savings = savingsRepository.getSavings();
-                        savings.addMoney(Double.valueOf(moneyToAdd));
-                        budget.pay(Double.valueOf(moneyToAdd));
-                        budgetRepository.updateBudget(budget);
-                        savingsRepository.updateSavings(savings);
-                        saved_amount_text_view.setText("Savings goal: " + savings.getCurrentAmount());
+                        if(budget.getCurrentAmount() > Double.valueOf(moneyToAdd)) {
+                            savings.addMoney(Double.valueOf(moneyToAdd));
+                            budget.pay(Double.valueOf(moneyToAdd));
+                            budgetRepository.updateBudget(budget);
+                            savingsRepository.updateSavings(savings);
+                            saved_amount_text_view.setText("Saved amount: " + savings.getCurrentAmount());
+                        } else {
+                            runOnUiThread(()-> {
+                                Toast.makeText(SavingsActivity.this, "Amount bigger than current budget",
+                                        Toast.LENGTH_SHORT).show();
+                            });
+                        }
 
                     });
                 } else {
