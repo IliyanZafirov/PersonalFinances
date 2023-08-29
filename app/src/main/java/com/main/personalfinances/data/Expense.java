@@ -10,22 +10,14 @@ import java.util.Date;
 @Entity(tableName = "transactions")
 public class Expense {
 
-
     @PrimaryKey(autoGenerate = true)
     private int id;
 
     private int budgetId;
     private TransactionCategory category;
-
     private Date purchaseDate;
-
     private Date dueDate;
-
     private double price;
-
-    public Expense() {
-
-    }
 
     public Expense(int budgetId, TransactionCategory category, Date purchaseDate,
                    Date dueDate, double price) {

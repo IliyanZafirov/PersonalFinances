@@ -14,9 +14,6 @@ public class Budget {
 
     private double currentAmount;
 
-    public Budget() {
-
-    }
     public Budget(double startingAmount) {
         this.startingAmount = startingAmount;
         currentAmount = startingAmount;

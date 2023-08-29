@@ -4,6 +4,8 @@ package com.main.personalfinances.data;
 
 import com.main.personalfinances.daos.ExpenseDao;
 
+import java.util.List;
+
 public class ExpensesRepository {
 
     ExpenseDao expenseDao;
@@ -16,4 +18,6 @@ public class ExpensesRepository {
     public void updateExpense(Expense expense) {expenseDao.updateExpense(expense);}
 
     public void deleteExpense(Expense expense) { expenseDao.deleteExpense(expense);}
+
+    public List<Expense> getAllExpenses() { return expenseDao.getAllExpenses(); }
 }

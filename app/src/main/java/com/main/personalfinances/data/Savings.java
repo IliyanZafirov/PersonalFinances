@@ -15,7 +15,7 @@ public class Savings {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -23,9 +23,6 @@ public class Savings {
 
     private double currentAmount;
 
-    public Savings() {
-
-    }
     public Savings(long budgetId, double targetAmount) {
         this.budgetId = budgetId;
         this.targetAmount = targetAmount;
