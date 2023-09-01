@@ -19,7 +19,7 @@ import com.main.personalfinances.daos.ExpenseDao;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Budget.class, Expense.class, Savings.class}, version = 105, exportSchema = false)
+@Database(entities = {Budget.class, Expense.class, Savings.class}, version = 107, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class PersonalFinancesDatabase extends RoomDatabase {
 

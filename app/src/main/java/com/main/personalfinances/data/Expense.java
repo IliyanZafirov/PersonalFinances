@@ -1,9 +1,15 @@
 package com.main.personalfinances.data;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.main.personalfinances.enums.TransactionCategory;
+import com.main.personalfinances.notification.NotificationReceiver;
 
 import java.util.Date;
 
@@ -15,17 +21,39 @@ public class Expense {
 
     private int budgetId;
     private TransactionCategory category;
-    private Date purchaseDate;
+    private String description;
+    private Date dateAdded;
     private Date dueDate;
     private double price;
 
-    public Expense(int budgetId, TransactionCategory category, Date purchaseDate,
+    public Expense(int budgetId, TransactionCategory category,String description, Date dateAdded,
                    Date dueDate, double price) {
         this.budgetId = budgetId;
         this.category = category;
-        this.purchaseDate = purchaseDate;
-        this.dueDate = dueDate;
+        this.description = description;
+        this.dateAdded = dateAdded;
+        if (category == TransactionCategory.BILLS || category == TransactionCategory.TAXES
+        || category == TransactionCategory.LOAN_SERVICING) {
+            this.dueDate = dueDate;
+        } else {
+            this.dueDate = dateAdded;
+        }
         this.price = price;
+    }
+
+    public void scheduleNotification(Context context) {
+        if (dueDate != dateAdded) {
+            AlarmManager alarmManager = (AlarmManager) context
+                    .getSystemService(Context.ALARM_SERVICE);
+            Intent notificationIntent = new Intent(context, NotificationReceiver.class);
+            notificationIntent.putExtra("expense description", description);
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                    context, id, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
+            if (dueDate.getTime() > System.currentTimeMillis()) {
+                alarmManager.set(AlarmManager.RTC_WAKEUP, dueDate.getTime(), pendingIntent);
+            }
+        }
     }
 
     public int getId() {
@@ -45,12 +73,16 @@ public class Expense {
         this.category = category;
     }
 
-    public Date getPurchaseDate() {
-        return purchaseDate;
+    public String getDescription() { return description; }
+
+    public void setDescription() { this.description = description; }
+
+    public Date getDateAdded() {
+        return dateAdded;
     }
 
-    public void setPurchaseDate(Date purchaseDate) {
-        this.purchaseDate = purchaseDate;
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
     }
 
     public Date getDueDate() {

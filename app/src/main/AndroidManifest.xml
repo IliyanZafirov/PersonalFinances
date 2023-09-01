@@ -24,5 +24,6 @@
         <activity android:name=".activities.BudgetActivity"/>
         <activity android:name=".activities.SavingsActivity"/>
         <activity android:name=".activities.ExpensesActivity" />
+        <receiver android:name=".notification.NotificationReceiver" />
     </application>
 </manifest>

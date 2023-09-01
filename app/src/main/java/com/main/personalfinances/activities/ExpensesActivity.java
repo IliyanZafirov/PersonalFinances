@@ -1,7 +1,6 @@
 package com.main.personalfinances.activities;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,13 +12,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.personalfinances.R;
+import com.main.personalfinances.adapter.ExpenseAdapter;
 import com.main.personalfinances.daos.BudgetDao;
 import com.main.personalfinances.daos.ExpenseDao;
 import com.main.personalfinances.data.BudgetRepository;
 import com.main.personalfinances.data.Expense;
 import com.main.personalfinances.data.ExpensesRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
+import com.main.personalfinances.enums.TransactionCategory;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 
@@ -42,7 +46,7 @@ public class ExpensesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transactions);
+        setContentView(R.layout.activity_expenses);
 
         Toolbar myToolbar = findViewById(R.id.transactions_toolbar);
         setSupportActionBar(myToolbar);
@@ -56,6 +60,16 @@ public class ExpensesActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        List<Expense> expenseList = new ArrayList<>();
+        expenseList.add(new Expense(1, TransactionCategory.BILLS, "Electricity",
+                Date.valueOf(String.valueOf(LocalDate.now())),
+                Date.valueOf(String.valueOf(LocalDate.now().plusDays(1))), 20));
+        expenseList.get(0).scheduleNotification(this);
+        ExpenseAdapter adapter = new ExpenseAdapter(expenseList);
+        adapter.setExpenseList(expenseList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
     }
 
 
