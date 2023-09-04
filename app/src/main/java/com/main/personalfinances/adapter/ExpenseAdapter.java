@@ -6,19 +6,32 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.personalfinances.R;
 import com.main.personalfinances.data.Expense;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> {
 
-    private List<Expense> expenseList;
+    private List<Expense> expenseList = new ArrayList<>();
+    private LiveData<List<Expense>> liveDataExpenseList;
 
-    public ExpenseAdapter(List<Expense> expenseList) {
-        this.expenseList = expenseList;
+    public ExpenseAdapter(LiveData<List<Expense>> liveDataExpenseList) {
+        this.liveDataExpenseList = liveDataExpenseList;
+
+        liveDataExpenseList.observeForever(new Observer<List<Expense>>() {
+            @Override
+            public void onChanged(List<Expense> expenses) {
+                expenseList.clear();
+                expenseList.addAll(expenses);
+                notifyDataSetChanged();
+            }
+        });
     }
 
 

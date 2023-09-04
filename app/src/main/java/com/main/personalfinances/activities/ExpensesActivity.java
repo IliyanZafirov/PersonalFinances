@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,6 +53,7 @@ public class ExpensesActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.transactions_toolbar);
         setSupportActionBar(myToolbar);
+        TextView amountSpendLast30DaysTextView = findViewById(R.id.spent_last_30_days);
 
         try {
             appDatabase = PersonalFinancesDatabase.getDatabase(this);
@@ -62,16 +65,12 @@ public class ExpensesActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        List<Expense> expenseList = new ArrayList<>();
-        expenseList.add(new Expense(1, TransactionCategory.BILLS, "Electricity",
-                LocalDateTime.now(), LocalDateTime.now().plusMinutes(5), 20));
-        expenseList.get(0).scheduleNotification(this);
-        ExpenseAdapter adapter = new ExpenseAdapter(expenseList);
-        adapter.setExpenseList(expenseList);
+        LiveData<List<Expense>> liveDataExpenseList = expensesRepository.getAllExpenses();
+        ExpenseAdapter adapter = new ExpenseAdapter(liveDataExpenseList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-    }
 
+    }
 
     public void goToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);

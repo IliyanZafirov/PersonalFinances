@@ -14,6 +14,7 @@
     <string name="monthly_budget">Monthly Budget:</string>
     <string name="current_budget">Current Budget:</string>
     <string name="spent_last_30_days">Spent last 30 days:</string>
+    <string name ="personal_finances_logo">Personal Finances Logo</string>
 
 
 </resources>

@@ -41,7 +41,8 @@
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/savings_toolbar"
-        app:srcCompat="@drawable/ic_pf_logo" />
+        app:srcCompat="@drawable/ic_pf_logo"
+        android:contentDescription="@string/personal_finances_logo"/>
 
     <TextView
         android:id="@+id/savings_goal"
