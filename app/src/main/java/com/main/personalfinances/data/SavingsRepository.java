@@ -12,8 +12,6 @@ public class SavingsRepository {
 
     public void updateSavings(Savings savings) { savingsDao.updateSavings(savings); }
 
-    public void deleteSavings(Savings savings) { savingsDao.deleteSavings(savings); }
-
     public Savings getSavings() { return savingsDao.getSavings(); }
 
 }

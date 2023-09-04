@@ -3,20 +3,28 @@ package com.main.personalfinances.activities;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.main.personalfinances.R;
+import com.main.personalfinances.activities.BudgetActivity;
+import com.main.personalfinances.activities.ExpensesActivity;
+import com.main.personalfinances.activities.SavingsActivity;
 import com.main.personalfinances.daos.BudgetDao;
 import com.main.personalfinances.daos.SavingsDao;
 import com.main.personalfinances.data.Budget;
@@ -49,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView greetingTextView;
     private ExecutorService databaseWriteExecutor;
 
+    private static final int PERMISSION_REQUEST_CODE = 123;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,21 +83,14 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton editNameButton = findViewById(R.id.edit_name_image_button);
 
-
-        userAuthenticate();
-
-        databaseWriteExecutor.execute(()-> {
-            Budget existingBudget = budgetRepository.getBudget();
-            if(existingBudget == null) {
-                Budget newBudget = new Budget(0);
-                long budgetId = budgetRepository.insertBudget(newBudget);
-
-                Savings savings = new Savings(budgetId, 0);
-                long savingsId = savingsRepository.insertSavings(savings);
-
-            }
-        });
-
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                    PERMISSION_REQUEST_CODE);
+        } else {
+            initializeApp();
+        }
 
         editNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,8 +98,21 @@ public class MainActivity extends AppCompatActivity {
                 promptUserForNameUpdate();
             }
         });
+    }
 
+    private void initializeApp() {
+        userAuthenticate();
 
+        databaseWriteExecutor.execute(() -> {
+            Budget existingBudget = budgetRepository.getBudget();
+            if (existingBudget == null) {
+                Budget newBudget = new Budget(0);
+                long budgetId = budgetRepository.insertBudget(newBudget);
+
+                Savings savings = new Savings(budgetId, 0);
+                long savingsId = savingsRepository.insertSavings(savings);
+            }
+        });
     }
 
     private void promptUserForNameUpdate() {
@@ -118,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
                 String username = userSharedPref.getString("1", "User");
 
                 greetingTextView.setText("Hello, " + username);
-
             }
         });
 
@@ -127,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
         nameUpdateDialog = builder.create();
         nameUpdateDialog.show();
     }
-
 
     private void promptUserForName() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -138,28 +152,27 @@ public class MainActivity extends AppCompatActivity {
         builder.setView(input);
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
-                        String enteredName = input.getText().toString();
+                String enteredName = input.getText().toString();
 
-                        SharedPreferences.Editor editor = userSharedPref.edit();
-                        editor.putString("1", enteredName);
-                        editor.apply();
+                SharedPreferences.Editor editor = userSharedPref.edit();
+                editor.putString("1", enteredName);
+                editor.apply();
 
-                        String username = userSharedPref.getString("1", "User");
+                String username = userSharedPref.getString("1", "User");
 
-                        greetingTextView.setText("Hello, " + username);
-                    }
-                })
-                .setCancelable(false);
+                greetingTextView.setText("Hello, " + username);
+            }
+        }).setCancelable(false);
 
         nameInsertDialog = builder.create();
         nameInsertDialog.show();
     }
 
     public void userAuthenticate() {
-        if(userSharedPref.getString("1","User").equals("User")) {
+        if (userSharedPref.getString("1", "User").equals("User")) {
             promptUserForName();
         } else {
             String username = userSharedPref.getString("1", "User");
@@ -181,8 +194,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ExpensesActivity.class);
         startActivity(intent);
     }
-
-
 
     @Override
     protected void onDestroy() {

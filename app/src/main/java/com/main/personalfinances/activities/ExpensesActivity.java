@@ -23,6 +23,7 @@ import com.main.personalfinances.enums.TransactionCategory;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -63,8 +64,7 @@ public class ExpensesActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         List<Expense> expenseList = new ArrayList<>();
         expenseList.add(new Expense(1, TransactionCategory.BILLS, "Electricity",
-                Date.valueOf(String.valueOf(LocalDate.now())),
-                Date.valueOf(String.valueOf(LocalDate.now().plusDays(1))), 20));
+                LocalDateTime.now(), LocalDateTime.now().plusMinutes(5), 20));
         expenseList.get(0).scheduleNotification(this);
         ExpenseAdapter adapter = new ExpenseAdapter(expenseList);
         adapter.setExpenseList(expenseList);

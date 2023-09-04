@@ -2,7 +2,6 @@ package com.main.personalfinances.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.main.personalfinances.R;
 import com.main.personalfinances.daos.BudgetDao;
@@ -76,8 +74,8 @@ public class SavingsActivity extends AppCompatActivity {
            Savings savings = savingsRepository.getSavings();
            if(savings != null) {
                runOnUiThread(() -> {
-                   savings_goal_text_view.setText("Savings goal: " + String.valueOf(savings.getTargetAmount()));
-                   saved_amount_text_view.setText("Saved amount: " + String.valueOf(savings.getCurrentAmount()));
+                   savings_goal_text_view.setText("Savings goal: " + savings.getTargetAmount());
+                   saved_amount_text_view.setText("Saved amount: " + savings.getCurrentAmount());
                });
            }
         });
@@ -113,7 +111,7 @@ public class SavingsActivity extends AppCompatActivity {
                 if(isValidNumber(newGoal)) {
                     databaseWriteExecutor.execute(()-> {
                         Savings savings = savingsRepository.getSavings();
-                        savings.setTargetAmount(Double.valueOf(newGoal));
+                        savings.setTargetAmount(Double.parseDouble(newGoal));
                         savings.setCurrentAmount(0);
                         savingsRepository.updateSavings(savings);
                         savings_goal_text_view.setText("Savings goal: " + savings.getTargetAmount());
@@ -157,9 +155,9 @@ public class SavingsActivity extends AppCompatActivity {
                     databaseWriteExecutor.execute(()-> {
                         Budget budget = budgetRepository.getBudget();
                         Savings savings = savingsRepository.getSavings();
-                        if(budget.getCurrentAmount() > Double.valueOf(moneyToAdd)) {
-                            savings.addMoney(Double.valueOf(moneyToAdd));
-                            budget.pay(Double.valueOf(moneyToAdd));
+                        if(budget.getCurrentAmount() > Double.parseDouble(moneyToAdd)) {
+                            savings.addMoney(Double.parseDouble(moneyToAdd));
+                            budget.pay(Double.parseDouble(moneyToAdd));
                             budgetRepository.updateBudget(budget);
                             savingsRepository.updateSavings(savings);
                             saved_amount_text_view.setText("Saved amount: " + savings.getCurrentAmount());
@@ -190,12 +188,8 @@ public class SavingsActivity extends AppCompatActivity {
 
     public boolean isValidNumber(String numberString) {
         try {
-            Double number = Double.valueOf(numberString);
-            if(number > 0) {
-                return true;
-            } else {
-                return  false;
-            }
+            double number = Double.parseDouble(numberString);
+            return number > 0;
         } catch(NumberFormatException e) {
             e.printStackTrace();
             return false;

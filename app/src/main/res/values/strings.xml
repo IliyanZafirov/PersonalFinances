@@ -13,6 +13,7 @@
     <string name="edit_savings_goal">Set savings goal</string>
     <string name="monthly_budget">Monthly Budget:</string>
     <string name="current_budget">Current Budget:</string>
+    <string name="spent_last_30_days">Spent last 30 days:</string>
 
 
 </resources>

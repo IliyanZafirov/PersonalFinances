@@ -5,13 +5,18 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.core.app.AlarmManagerCompat;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.main.personalfinances.enums.TransactionCategory;
 import com.main.personalfinances.notification.NotificationReceiver;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 @Entity(tableName = "transactions")
 public class Expense {
@@ -22,12 +27,12 @@ public class Expense {
     private int budgetId;
     private TransactionCategory category;
     private String description;
-    private Date dateAdded;
-    private Date dueDate;
+    private LocalDateTime dateAdded;
+    private LocalDateTime dueDate;
     private double price;
 
-    public Expense(int budgetId, TransactionCategory category,String description, Date dateAdded,
-                   Date dueDate, double price) {
+    public Expense(int budgetId, TransactionCategory category,String description, LocalDateTime dateAdded,
+                   LocalDateTime dueDate, double price) {
         this.budgetId = budgetId;
         this.category = category;
         this.description = description;
@@ -42,18 +47,26 @@ public class Expense {
     }
 
     public void scheduleNotification(Context context) {
-        if (dueDate != dateAdded) {
-            AlarmManager alarmManager = (AlarmManager) context
-                    .getSystemService(Context.ALARM_SERVICE);
+        if (dueDate != null && dueDate.isAfter(LocalDateTime.now())) {
+            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             Intent notificationIntent = new Intent(context, NotificationReceiver.class);
-            notificationIntent.putExtra("expense description", description);
+            notificationIntent.putExtra("expense_description", description);
+
+            // Convert LocalDateTime to milliseconds since the Unix epoch
+            long triggerMillis = LocalDateTimeToMillis(dueDate);
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(
                     context, id, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
-            if (dueDate.getTime() > System.currentTimeMillis()) {
-                alarmManager.set(AlarmManager.RTC_WAKEUP, dueDate.getTime(), pendingIntent);
-            }
+
+            // Use AlarmManagerCompat to set the alarm
+            AlarmManagerCompat.setExactAndAllowWhileIdle(alarmManager, AlarmManager.RTC_WAKEUP, triggerMillis, pendingIntent);
         }
+    }
+
+    private long LocalDateTimeToMillis(LocalDateTime localDateTime) {
+        ZoneId zoneId = ZoneId.systemDefault();
+        Instant instant = localDateTime.atZone(zoneId).toInstant();
+        return TimeUnit.SECONDS.toMillis(instant.getEpochSecond());
     }
 
     public int getId() {
@@ -77,19 +90,19 @@ public class Expense {
 
     public void setDescription() { this.description = description; }
 
-    public Date getDateAdded() {
+    public LocalDateTime getDateAdded() {
         return dateAdded;
     }
 
-    public void setDateAdded(Date dateAdded) {
+    public void setDateAdded(LocalDateTime dateAdded) {
         this.dateAdded = dateAdded;
     }
 
-    public Date getDueDate() {
+    public LocalDateTime getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(LocalDateTime dueDate) {
         this.dueDate = dueDate;
     }
 

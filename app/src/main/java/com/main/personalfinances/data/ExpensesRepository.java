@@ -2,6 +2,8 @@ package com.main.personalfinances.data;
 
 
 
+import androidx.lifecycle.LiveData;
+
 import com.main.personalfinances.daos.ExpenseDao;
 
 import java.util.List;
@@ -19,5 +21,5 @@ public class ExpensesRepository {
 
     public void deleteExpense(Expense expense) { expenseDao.deleteExpense(expense);}
 
-    public List<Expense> getAllExpenses() { return expenseDao.getAllExpenses(); }
+    public LiveData<List<Expense>> getAllExpenses() { return expenseDao.getAllExpenses(); }
 }
