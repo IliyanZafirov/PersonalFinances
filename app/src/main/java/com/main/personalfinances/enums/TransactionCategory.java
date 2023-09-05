@@ -9,5 +9,4 @@ public enum TransactionCategory {
     TAXES,
     LOAN_SERVICING,
     HOUSE_MAINTENANCE,
-
 }

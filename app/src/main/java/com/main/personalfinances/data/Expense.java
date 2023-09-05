@@ -13,6 +13,7 @@ import com.main.personalfinances.enums.TransactionCategory;
 import com.main.personalfinances.notification.NotificationReceiver;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -27,33 +28,28 @@ public class Expense {
     private int budgetId;
     private TransactionCategory category;
     private String description;
-    private LocalDateTime dateAdded;
-    private LocalDateTime dueDate;
+    private LocalDate dateAdded;
+    private LocalDate dueDate;
     private double price;
 
-    public Expense(int budgetId, TransactionCategory category,String description, LocalDateTime dateAdded,
-                   LocalDateTime dueDate, double price) {
+    public Expense(int budgetId, TransactionCategory category,String description, LocalDate dateAdded,
+                   LocalDate dueDate, double price) {
         this.budgetId = budgetId;
         this.category = category;
         this.description = description;
         this.dateAdded = dateAdded;
-        if (category == TransactionCategory.BILLS || category == TransactionCategory.TAXES
-        || category == TransactionCategory.LOAN_SERVICING) {
-            this.dueDate = dueDate;
-        } else {
-            this.dueDate = dateAdded;
-        }
         this.price = price;
+        this.dueDate = dueDate;
     }
 
     public void scheduleNotification(Context context) {
-        if (dueDate != null && dueDate.isAfter(LocalDateTime.now())) {
+        if (dueDate != null && dueDate.isAfter(LocalDate.now())) {
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             Intent notificationIntent = new Intent(context, NotificationReceiver.class);
             notificationIntent.putExtra("expense_description", description);
 
-            // Convert LocalDateTime to milliseconds since the Unix epoch
-            long triggerMillis = LocalDateTimeToMillis(dueDate);
+            // Convert LocalDate to milliseconds since the Unix epoch
+            long triggerMillis = LocalDateToMillis(dueDate);
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(
                     context, id, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
@@ -63,10 +59,14 @@ public class Expense {
         }
     }
 
-    private long LocalDateTimeToMillis(LocalDateTime localDateTime) {
-        ZoneId zoneId = ZoneId.systemDefault();
-        Instant instant = localDateTime.atZone(zoneId).toInstant();
-        return TimeUnit.SECONDS.toMillis(instant.getEpochSecond());
+    private long LocalDateToMillis(LocalDate localDate) {
+        return localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
+    private boolean categoryRequiresDueDate(TransactionCategory category) {
+        return category == TransactionCategory.BILLS ||
+                category == TransactionCategory.TAXES ||
+                category == TransactionCategory.LOAN_SERVICING;
     }
 
     public int getId() {
@@ -90,19 +90,19 @@ public class Expense {
 
     public void setDescription() { this.description = description; }
 
-    public LocalDateTime getDateAdded() {
+    public LocalDate getDateAdded() {
         return dateAdded;
     }
 
-    public void setDateAdded(LocalDateTime dateAdded) {
+    public void setDateAdded(LocalDate dateAdded) {
         this.dateAdded = dateAdded;
     }
 
-    public LocalDateTime getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(LocalDateTime dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 

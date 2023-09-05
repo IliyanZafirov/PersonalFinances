@@ -20,6 +20,7 @@ public class ExpensesRepository {
     public void updateExpense(Expense expense) {expenseDao.updateExpense(expense);}
 
     public void deleteExpense(Expense expense) { expenseDao.deleteExpense(expense);}
+    public void deleteAllExpenses() { expenseDao.deleteAllExpenses();}
 
     public LiveData<List<Expense>> getAllExpenses() { return expenseDao.getAllExpenses(); }
 }

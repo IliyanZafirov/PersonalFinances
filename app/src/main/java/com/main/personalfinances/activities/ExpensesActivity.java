@@ -3,13 +3,17 @@ package com.main.personalfinances.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,14 +27,11 @@ import com.main.personalfinances.data.ExpensesRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 import com.main.personalfinances.enums.TransactionCategory;
 
-import java.sql.Date;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
-
-// ... (import statements)
+import java.util.concurrent.Executors;
 
 public class ExpensesActivity extends AppCompatActivity {
 
@@ -38,13 +39,11 @@ public class ExpensesActivity extends AppCompatActivity {
     private ExpenseDao expenseDao;
     private ExpensesRepository expensesRepository;
     private BudgetDao budgetDao;
-
     private BudgetRepository budgetRepository;
+
     private ExecutorService databaseWriteExecutor;
 
-    private EditText amountEditText;
-    private EditText categoryEditText;
-    private Button submitButton;
+    private ExpenseAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,16 +63,43 @@ public class ExpensesActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        databaseWriteExecutor = Executors.newSingleThreadExecutor();
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         LiveData<List<Expense>> liveDataExpenseList = expensesRepository.getAllExpenses();
-        ExpenseAdapter adapter = new ExpenseAdapter(liveDataExpenseList);
+        adapter = new ExpenseAdapter(liveDataExpenseList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
+        liveDataExpenseList.observe(this, new Observer<List<Expense>>() {
+            @Override
+            public void onChanged(List<Expense> expenseList) {
+                double totalAmountSpent = calculateTotalAmountSpentInLast30Days(expenseList);
+                amountSpendLast30DaysTextView.setText(
+                        String.format("Spent last 30 days: %.2f", totalAmountSpent));
+            }
+        });
+    }
+
+
+
+    private double calculateTotalAmountSpentInLast30Days(List<Expense> expenses) {
+        double total = 0;
+        LocalDate thirtyDaysAgo = LocalDate.now().minusDays(30);
+        for (Expense expense: expenses) {
+            if (expense.getDateAdded().isAfter(thirtyDaysAgo)) {
+                total += expense.getPrice();
+            }
+        }
+        return total;
     }
 
     public void goToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToForm(View view) {
+        Intent intent = new Intent(this, CreateExpenseActivity.class);
         startActivity(intent);
     }
 }

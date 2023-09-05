@@ -6,6 +6,7 @@
     <string name="savings">Savings</string>
     <string name="your_budget">Your budget</string>
     <string name="home_activity_button_description">Go to home activity</string>
+    <string name="expense_activity_button_description">Go to expenses activity</string>
     <string name="edit_user_name">Edit user name</string>
     <string name="set_savings_goal">Savings goal:</string>
     <string name="add_money">Add Money</string>
@@ -14,6 +15,7 @@
     <string name="monthly_budget">Monthly Budget:</string>
     <string name="current_budget">Current Budget:</string>
     <string name="spent_last_30_days">Spent last 30 days:</string>
+    <string name="add_expense">Add expense</string>
     <string name ="personal_finances_logo">Personal Finances Logo</string>
 
 

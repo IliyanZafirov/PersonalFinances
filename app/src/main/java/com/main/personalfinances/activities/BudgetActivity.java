@@ -16,8 +16,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.main.personalfinances.R;
 import com.main.personalfinances.daos.BudgetDao;
+import com.main.personalfinances.daos.ExpenseDao;
 import com.main.personalfinances.data.Budget;
 import com.main.personalfinances.data.BudgetRepository;
+import com.main.personalfinances.data.ExpensesRepository;
 import com.main.personalfinances.data.Savings;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 
@@ -30,8 +32,9 @@ public class BudgetActivity extends AppCompatActivity {
     private PersonalFinancesDatabase appDatabase;
 
     private BudgetDao budgetDao;
-
     private BudgetRepository budgetRepository;
+    private ExpenseDao expenseDao;
+    private ExpensesRepository expensesRepository;
 
     private ExecutorService databaseWriteExecutor;
 
@@ -47,12 +50,14 @@ public class BudgetActivity extends AppCompatActivity {
 
         try {
             appDatabase = PersonalFinancesDatabase.getDatabase(this);
-            budgetDao = appDatabase.budgetDao();
-            budgetRepository = new BudgetRepository(budgetDao);
+
         } catch(Exception e) {
             e.printStackTrace();
         }
-
+        budgetDao = appDatabase.budgetDao();
+        budgetRepository = new BudgetRepository(budgetDao);
+        expenseDao = appDatabase.expenseDao();
+        expensesRepository = new ExpensesRepository(expenseDao);
         monthlyBudget = findViewById(R.id.monthly_budget);
         currentBudget = findViewById(R.id.current_budget);
         updateBudgetButton = findViewById(R.id.update_budget_button);
@@ -90,7 +95,7 @@ public class BudgetActivity extends AppCompatActivity {
 
     private void updateBudget(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Update budget:");
+        builder.setMessage("Update budget (IT IS GOING TO DELETE ALL TRANSACTIONS IF PRESENT):");
 
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -106,6 +111,7 @@ public class BudgetActivity extends AppCompatActivity {
                         budget.setStartingAmount(Double.valueOf(newBudget));
                         budget.setCurrentAmount(Double.valueOf(newBudget));
                         budgetRepository.updateBudget(budget);
+                        expensesRepository.deleteAllExpenses();
                         monthlyBudget.setText("Monthly Budget: " + String.valueOf(budget.getStartingAmount()));
                         currentBudget.setText("Current Amount: " + String.valueOf(budget.getCurrentAmount()));
                     });

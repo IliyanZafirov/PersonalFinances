@@ -49,7 +49,11 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         holder.editCategory.setText(expense.getCategory().toString());
         holder.editPrice.setText(String.valueOf(expense.getPrice()));
         holder.editDescription.setText(expense.getDescription());
-        holder.editDueDate.setText(expense.getDueDate().toString());
+        if (expense.getDueDate() != null) {
+            holder.editDueDate.setText(expense.getDueDate().toString());
+        } else {
+            holder.editDueDate.setText("");
+        }
         holder.editPurchaseDate.setText(expense.getDateAdded().toString());
     }
 
@@ -64,6 +68,10 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
 
     public List<Expense> getExpenseList() {
         return expenseList;
+    }
+
+    public void addExpense(Expense expense) {
+        expenseList.add(expense);
     }
 
     class ExpenseViewHolder extends RecyclerView.ViewHolder {
