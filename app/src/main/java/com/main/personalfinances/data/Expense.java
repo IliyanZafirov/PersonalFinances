@@ -1,24 +1,17 @@
 package com.main.personalfinances.data;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-
-import androidx.core.app.AlarmManagerCompat;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.main.personalfinances.enums.TransactionCategory;
-import com.main.personalfinances.notification.NotificationReceiver;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
+
+/**
+ * Represents a real life expense that is related to a budget
+ * It has category, description, price and date of payment
+ */
 @Entity(tableName = "expenses")
 public class Expense {
 

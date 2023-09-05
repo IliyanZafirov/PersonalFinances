@@ -25,7 +25,6 @@ import com.main.personalfinances.enums.FuturePaymentCategory;
 import com.main.personalfinances.repositories.FuturePaymentRepository;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;

@@ -5,6 +5,9 @@ import androidx.room.TypeConverter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Convert LocalDate to proper format for the database
+ */
 public class LocalDateConverter {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;

@@ -4,6 +4,9 @@ package com.main.personalfinances.data;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ * Represents a budget class that has starting and current amount
+ */
 @Entity(tableName = "budget")
 public class Budget {
     @PrimaryKey(autoGenerate = true)
@@ -40,6 +43,10 @@ public class Budget {
         return currentAmount;
     }
 
+    /**
+     * Deducts money from itself on payment or when sparing savings
+     * @param amountToPay
+     */
     public void pay(double amountToPay) {
         if(amountToPay > 0 && amountToPay <= currentAmount) {
             currentAmount = currentAmount - amountToPay;

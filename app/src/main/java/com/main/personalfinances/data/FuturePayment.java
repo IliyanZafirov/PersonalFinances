@@ -15,6 +15,10 @@ import com.main.personalfinances.notification.NotificationReceiver;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
+/**
+ * Represents a reminder for future payment. It is related to a budget.
+ * Has category, description and due date.
+ */
 @Entity(tableName = "future_payments")
 public class FuturePayment {
 
@@ -57,7 +61,7 @@ public class FuturePayment {
     public LocalDateTime getDueDate() {
         return dueDate;
     }
-
+    
     public void scheduleNotification(Context context) {
         if (dueDate != null && dueDate.isAfter(LocalDateTime.now())) {
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);

@@ -11,6 +11,9 @@ import androidx.core.app.NotificationCompat;
 
 import com.main.personalfinances.R;
 
+/**
+ * Used for future payments notification
+ */
 public class NotificationReceiver extends BroadcastReceiver {
 
     @Override

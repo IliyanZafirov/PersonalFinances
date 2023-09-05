@@ -1,9 +1,11 @@
 package com.main.personalfinances.data;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ * Represents savings. Has target and current amount. Savings are related to a budget.
+ */
 @Entity(tableName = "savings")
 public class Savings {
 
@@ -11,14 +13,6 @@ public class Savings {
     private long id;
 
     private long budgetId;
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     private double targetAmount;
 
     private double currentAmount;
@@ -57,5 +51,12 @@ public class Savings {
 
     public void setBudgetId(int budgetId) {
         this.budgetId = budgetId;
+    }
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
