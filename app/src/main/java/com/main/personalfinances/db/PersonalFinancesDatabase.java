@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 import com.main.personalfinances.converter.LocalDateConverter;
+import com.main.personalfinances.converter.LocalDateTimeConverter;
 import com.main.personalfinances.daos.FuturePaymentDao;
 import com.main.personalfinances.data.Budget;
 import com.main.personalfinances.daos.BudgetDao;
@@ -18,12 +19,10 @@ import com.main.personalfinances.daos.SavingsDao;
 import com.main.personalfinances.data.Expense;
 import com.main.personalfinances.daos.ExpenseDao;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 @Database(entities = {Budget.class, Expense.class, Savings.class, FuturePayment.class},
-        version = 110, exportSchema = false)
-@TypeConverters({LocalDateConverter.class})
+        version = 111, exportSchema = false)
+@TypeConverters({LocalDateConverter.class, LocalDateTimeConverter.class})
 public abstract class PersonalFinancesDatabase extends RoomDatabase {
 
 

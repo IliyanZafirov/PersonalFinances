@@ -15,7 +15,7 @@
         android:contentDescription="Choose category"
         android:hint="Category"
         android:minHeight="48dp"
-        android:textColor="@color/yellow_canary_variant" />
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/editDescriptionForFuturePayment"
@@ -24,16 +24,21 @@
         android:hint="Description"
         android:inputType="text"
         android:minHeight="48dp"
-        android:textColor="@color/yellow_canary_variant" />
+        android:textColor="@color/black" />
 
-    <EditText
+    <TextView
         android:id="@+id/editDueDateForFuturePayment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Due Date (yyyy-mm-dd)"
-        android:inputType="text"
+        android:hint="Due Date (YYYY-MM-DD THH-MM-SS)"
         android:minHeight="48dp"
-        android:textColor="@color/yellow_canary_variant" />
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/openDateAndTimePickerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Date and Time" />
 
     <Button
         android:id="@+id/btnSaveFuturePayment"

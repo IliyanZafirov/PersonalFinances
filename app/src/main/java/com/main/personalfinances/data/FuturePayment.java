@@ -12,7 +12,7 @@ import androidx.room.PrimaryKey;
 import com.main.personalfinances.enums.FuturePaymentCategory;
 import com.main.personalfinances.notification.NotificationReceiver;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 @Entity(tableName = "future_payments")
@@ -21,14 +21,14 @@ public class FuturePayment {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private int budgetId;
-    private FuturePaymentCategory category;
-    private String description;
-    private LocalDate dueDate;
+    private final int budgetId;
+    private final FuturePaymentCategory category;
+    private final String description;
+    private final LocalDateTime dueDate;
 
 
     public FuturePayment(int budgetId, FuturePaymentCategory category, String description,
-                         LocalDate dueDate) {
+                         LocalDateTime dueDate) {
         this.budgetId = budgetId;
         this.category = category;
         this.description = description;
@@ -54,18 +54,18 @@ public class FuturePayment {
         return category;
     }
 
-    public LocalDate getDueDate() {
+    public LocalDateTime getDueDate() {
         return dueDate;
     }
 
     public void scheduleNotification(Context context) {
-        if (dueDate != null && dueDate.isAfter(LocalDate.now())) {
+        if (dueDate != null && dueDate.isAfter(LocalDateTime.now())) {
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             Intent notificationIntent = new Intent(context, NotificationReceiver.class);
             notificationIntent.putExtra("future_payment_description", description);
 
             // Convert LocalDate to milliseconds since the Unix epoch
-            long triggerMillis = LocalDateToMillis(dueDate);
+            long triggerMillis = LocalDateTimeToMillis(dueDate);
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(
                     context, id, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
@@ -75,7 +75,7 @@ public class FuturePayment {
         }
     }
 
-    private long LocalDateToMillis(LocalDate localDate) {
-        return localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    public static long LocalDateTimeToMillis(LocalDateTime localDateTime) {
+        return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 }

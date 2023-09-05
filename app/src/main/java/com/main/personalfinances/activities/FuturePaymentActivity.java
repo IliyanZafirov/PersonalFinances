@@ -3,6 +3,8 @@ package com.main.personalfinances.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,13 +21,12 @@ import com.main.personalfinances.db.PersonalFinancesDatabase;
 import com.main.personalfinances.repositories.FuturePaymentRepository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class FuturePaymentActivity extends AppCompatActivity {
-
-    // TODO: IF NO FUTURE PAYMENTS SHOW TEXT VIEW -> IT SEEMS LIKE YOU DO NOT HAVE ANY FUTURE PAYMENTS
 
     private PersonalFinancesDatabase appDatabase;
     private FuturePaymentRepository futurePaymentRepository;
@@ -56,6 +57,19 @@ public class FuturePaymentActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
+        TextView noFuturePaymentsDueTextView = findViewById(R.id.no_future_payments_due_text_view);
+
+        liveDataFuturePaymentList.observe(this, new Observer<List<FuturePayment>>() {
+            @Override
+            public void onChanged(List<FuturePayment> futurePayments) {
+                if (futurePayments.isEmpty()) {
+                    noFuturePaymentsDueTextView.setVisibility(View.VISIBLE);
+                } else {
+                    noFuturePaymentsDueTextView.setVisibility(View.GONE);
+                }
+            }
+        });
+
         removeOldFuturePayments();
     }
 
@@ -64,9 +78,9 @@ public class FuturePaymentActivity extends AppCompatActivity {
         allFuturePayments.observe(this, new Observer<List<FuturePayment>>() {
             @Override
             public void onChanged(List<FuturePayment> futurePayments) {
-                LocalDate currentDate = LocalDate.now();
+                LocalDateTime currentDate = LocalDateTime.now();
                 for (FuturePayment futurePayment: futurePayments) {
-                    LocalDate dueDate = futurePayment.getDueDate();
+                    LocalDateTime dueDate = futurePayment.getDueDate();
                     if (dueDate != null && dueDate.isBefore(currentDate)) {
                         removeFuturePayment(futurePayment);
                     }
