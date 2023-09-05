@@ -19,7 +19,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-@Entity(tableName = "transactions")
+@Entity(tableName = "expenses")
 public class Expense {
 
     @PrimaryKey(autoGenerate = true)
@@ -29,44 +29,15 @@ public class Expense {
     private TransactionCategory category;
     private String description;
     private LocalDate dateAdded;
-    private LocalDate dueDate;
     private double price;
 
-    public Expense(int budgetId, TransactionCategory category,String description, LocalDate dateAdded,
-                   LocalDate dueDate, double price) {
+    public Expense(int budgetId, TransactionCategory category,String description,
+                   LocalDate dateAdded,double price) {
         this.budgetId = budgetId;
         this.category = category;
         this.description = description;
         this.dateAdded = dateAdded;
         this.price = price;
-        this.dueDate = dueDate;
-    }
-
-    public void scheduleNotification(Context context) {
-        if (dueDate != null && dueDate.isAfter(LocalDate.now())) {
-            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            Intent notificationIntent = new Intent(context, NotificationReceiver.class);
-            notificationIntent.putExtra("expense_description", description);
-
-            // Convert LocalDate to milliseconds since the Unix epoch
-            long triggerMillis = LocalDateToMillis(dueDate);
-
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                    context, id, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
-
-            // Use AlarmManagerCompat to set the alarm
-            AlarmManagerCompat.setExactAndAllowWhileIdle(alarmManager, AlarmManager.RTC_WAKEUP, triggerMillis, pendingIntent);
-        }
-    }
-
-    private long LocalDateToMillis(LocalDate localDate) {
-        return localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-    }
-
-    private boolean categoryRequiresDueDate(TransactionCategory category) {
-        return category == TransactionCategory.BILLS ||
-                category == TransactionCategory.TAXES ||
-                category == TransactionCategory.LOAN_SERVICING;
     }
 
     public int getId() {
@@ -96,14 +67,6 @@ public class Expense {
 
     public void setDateAdded(LocalDate dateAdded) {
         this.dateAdded = dateAdded;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
     }
 
     public double getPrice() {

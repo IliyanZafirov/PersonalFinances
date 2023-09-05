@@ -1,6 +1,7 @@
-package com.main.personalfinances.data;
+package com.main.personalfinances.repositories;
 
 import com.main.personalfinances.daos.SavingsDao;
+import com.main.personalfinances.data.Savings;
 
 public class SavingsRepository {
     SavingsDao savingsDao;

@@ -18,12 +18,10 @@ import com.main.personalfinances.R;
 import com.main.personalfinances.daos.BudgetDao;
 import com.main.personalfinances.daos.ExpenseDao;
 import com.main.personalfinances.data.Budget;
-import com.main.personalfinances.data.BudgetRepository;
-import com.main.personalfinances.data.ExpensesRepository;
-import com.main.personalfinances.data.Savings;
+import com.main.personalfinances.repositories.BudgetRepository;
+import com.main.personalfinances.repositories.ExpensesRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -95,7 +93,7 @@ public class BudgetActivity extends AppCompatActivity {
 
     private void updateBudget(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Update budget (IT IS GOING TO DELETE ALL TRANSACTIONS IF PRESENT):");
+        builder.setMessage("Update budget (IT IS GOING TO DELETE ALL EXPENSES IF PRESENT):");
 
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);

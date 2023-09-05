@@ -15,7 +15,7 @@
         android:padding="8dp">
 
         <EditText
-            android:id="@+id/editCategory"
+            android:id="@+id/editCategoryForFuturePayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
@@ -24,16 +24,7 @@
             android:textColor="@color/black"/>
 
         <EditText
-            android:id="@+id/editPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:inputType="numberDecimal"
-            android:hint="Price"
-            android:textColor="@color/black"/>
-
-        <EditText
-            android:id="@+id/editDescription"
+            android:id="@+id/editDescriptionForFuturePayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
@@ -42,12 +33,12 @@
             android:textColor="@color/black"/>
 
         <EditText
-            android:id="@+id/editPurchaseDate"
+            android:id="@+id/editDueDateForFuturePayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:inputType="date"
-            android:hint="Purchase Date"
+            android:hint="Due Date"
             android:focusable="false"
             android:textColor="@color/black"/>
     </LinearLayout>

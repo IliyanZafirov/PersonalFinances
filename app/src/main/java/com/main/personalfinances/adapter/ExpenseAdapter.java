@@ -49,11 +49,6 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         holder.editCategory.setText(expense.getCategory().toString());
         holder.editPrice.setText(String.valueOf(expense.getPrice()));
         holder.editDescription.setText(expense.getDescription());
-        if (expense.getDueDate() != null) {
-            holder.editDueDate.setText(expense.getDueDate().toString());
-        } else {
-            holder.editDueDate.setText("");
-        }
         holder.editPurchaseDate.setText(expense.getDateAdded().toString());
     }
 
@@ -79,7 +74,6 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         EditText editCategory;
         EditText editPrice;
         EditText editDescription;
-        EditText editDueDate;
         EditText editPurchaseDate;
 
         public ExpenseViewHolder(@NonNull View itemView) {
@@ -87,7 +81,6 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
             editCategory = itemView.findViewById(R.id.editCategory);
             editPrice = itemView.findViewById(R.id.editPrice);
             editDescription = itemView.findViewById(R.id.editDescription);
-            editDueDate = itemView.findViewById(R.id.editDueDate);
             editPurchaseDate = itemView.findViewById(R.id.editPurchaseDate);
         }
     }

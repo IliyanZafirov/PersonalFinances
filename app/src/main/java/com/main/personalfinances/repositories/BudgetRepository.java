@@ -1,8 +1,9 @@
-package com.main.personalfinances.data;
+package com.main.personalfinances.repositories;
 
 import androidx.lifecycle.LiveData;
 
 import com.main.personalfinances.daos.BudgetDao;
+import com.main.personalfinances.data.Budget;
 
 public class BudgetRepository {
 

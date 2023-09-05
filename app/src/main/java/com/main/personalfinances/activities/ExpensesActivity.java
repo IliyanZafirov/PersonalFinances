@@ -3,12 +3,7 @@ package com.main.personalfinances.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -21,11 +16,10 @@ import com.main.personalfinances.R;
 import com.main.personalfinances.adapter.ExpenseAdapter;
 import com.main.personalfinances.daos.BudgetDao;
 import com.main.personalfinances.daos.ExpenseDao;
-import com.main.personalfinances.data.BudgetRepository;
+import com.main.personalfinances.repositories.BudgetRepository;
 import com.main.personalfinances.data.Expense;
-import com.main.personalfinances.data.ExpensesRepository;
+import com.main.personalfinances.repositories.ExpensesRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
-import com.main.personalfinances.enums.TransactionCategory;
 
 
 import java.time.LocalDate;
@@ -64,7 +58,7 @@ public class ExpensesActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.expenses_recyclerView);
         LiveData<List<Expense>> liveDataExpenseList = expensesRepository.getAllExpenses();
         adapter = new ExpenseAdapter(liveDataExpenseList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

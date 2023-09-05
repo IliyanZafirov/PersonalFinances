@@ -21,9 +21,9 @@ public interface ExpenseDao {
     @Delete
     public void deleteExpense(Expense expense);
 
-    @Query("SELECT * FROM transactions")
+    @Query("SELECT * FROM expenses")
     public LiveData<List<Expense>> getAllExpenses();
 
-    @Query("DELETE FROM transactions")
+    @Query("DELETE FROM expenses")
     public void deleteAllExpenses();
 }

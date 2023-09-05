@@ -19,9 +19,9 @@ import com.main.personalfinances.R;
 import com.main.personalfinances.daos.BudgetDao;
 import com.main.personalfinances.daos.SavingsDao;
 import com.main.personalfinances.data.Budget;
-import com.main.personalfinances.data.BudgetRepository;
+import com.main.personalfinances.repositories.BudgetRepository;
 import com.main.personalfinances.data.Savings;
-import com.main.personalfinances.data.SavingsRepository;
+import com.main.personalfinances.repositories.SavingsRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 
 import java.util.concurrent.ExecutorService;

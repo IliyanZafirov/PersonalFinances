@@ -45,11 +45,13 @@
         app:srcCompat="@android:drawable/ic_menu_edit"
         android:contentDescription="@string/edit_user_name"/>
 
+
     <Button
         android:id="@+id/budgetButton"
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/medium_red"
         android:drawableLeft="@drawable/ic_budget_white"
         android:drawablePadding="@dimen/padding_medium"
@@ -59,35 +61,30 @@
         android:textAlignment="textStart"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_large"
-        app:layout_constraintBottom_toTopOf="@+id/transactionsButton"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <Button
         android:id="@+id/transactionsButton"
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="15dp"
+        android:backgroundTint="@color/medium_red"
         android:drawableLeft="@drawable/ic_transaction_white"
         android:fontFamily="cursive"
+        android:onClick="goToTransactions"
         android:text="@string/transactions"
         android:textAlignment="textStart"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_large"
-        android:onClick="goToTransactions"
-        android:backgroundTint="@color/medium_red"
-        app:layout_constraintBottom_toTopOf="@+id/savingsButton"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/budgetButton" />
 
     <Button
         android:id="@+id/savingsButton"
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginStart="15dp"
         android:backgroundTint="@color/medium_red"
         android:drawableLeft="@drawable/ic_savings_white"
         android:fontFamily="cursive"
@@ -96,21 +93,35 @@
         android:textAlignment="textStart"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transactionsButton" />
+
+    <Button
+        android:id="@+id/futurepaymentsButton"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginStart="15dp"
+        android:backgroundTint="@color/medium_red"
+        android:drawableLeft="@drawable/ic_savings_white"
+        android:fontFamily="cursive"
+        android:onClick="goToFuturePayments"
+        android:text="@string/futurepayments"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/savingsButton" />
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="116dp"
-        android:layout_marginBottom="116dp"
-        app:layout_constraintBottom_toTopOf="@+id/budgetButton"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="92dp"
+        android:contentDescription="@string/personal_finances_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
-        app:srcCompat="@drawable/ic_pf_logo"
-        android:contentDescription="@string/personal_finances_logo"/>
+        app:srcCompat="@drawable/ic_pf_logo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

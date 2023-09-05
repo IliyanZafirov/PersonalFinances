@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.content.Context;
@@ -19,18 +18,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.main.personalfinances.R;
-import com.main.personalfinances.activities.BudgetActivity;
-import com.main.personalfinances.activities.ExpensesActivity;
-import com.main.personalfinances.activities.SavingsActivity;
 import com.main.personalfinances.daos.BudgetDao;
 import com.main.personalfinances.daos.SavingsDao;
 import com.main.personalfinances.data.Budget;
-import com.main.personalfinances.data.BudgetRepository;
+import com.main.personalfinances.repositories.BudgetRepository;
 import com.main.personalfinances.data.Savings;
-import com.main.personalfinances.data.SavingsRepository;
+import com.main.personalfinances.repositories.SavingsRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 
 import java.util.concurrent.ExecutorService;
@@ -192,6 +187,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToTransactions(View view) {
         Intent intent = new Intent(this, ExpensesActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToFuturePayments(View view) {
+        Intent intent = new Intent(this, FuturePaymentActivity.class);
         startActivity(intent);
     }
 

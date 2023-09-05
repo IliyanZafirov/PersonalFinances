@@ -17,16 +17,13 @@ import com.main.personalfinances.R;
 import com.main.personalfinances.daos.BudgetDao;
 import com.main.personalfinances.daos.ExpenseDao;
 import com.main.personalfinances.data.Budget;
-import com.main.personalfinances.data.BudgetRepository;
+import com.main.personalfinances.repositories.BudgetRepository;
 import com.main.personalfinances.data.Expense;
-import com.main.personalfinances.data.ExpensesRepository;
+import com.main.personalfinances.repositories.ExpensesRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 import com.main.personalfinances.enums.TransactionCategory;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -81,31 +78,12 @@ public class CreateExpenseActivity extends AppCompatActivity {
         TransactionCategory category = (TransactionCategory) categorySpinner.getSelectedItem();
         EditText editPrice = findViewById(R.id.editPrice);
         EditText editDescription = findViewById(R.id.editDescription);
-        EditText editDueDate = findViewById(R.id.editDueDate);
 
-        String description = editDescription.getText().toString();
-        String dueDateString = editDueDate.getText().toString();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        final LocalDate dueDate;
-
-        if (categoryRequiresDueDate(category)) {
-            try {
-                dueDate = LocalDate.parse(dueDateString, formatter);
-
-                if (dueDate.isBefore(LocalDate.now())) {
-                    runOnUiThread(() -> {
-                        showToast("Due date can't be in the past");
-                    });
-                    return;
-                }
-            } catch(Exception e) {
-                runOnUiThread(() -> {
-                    showToast("Invalid due date format");
-                });
-                return;
-            }
+        final String description;
+        if (editDescription.getText().toString() != null) {
+            description = editDescription.getText().toString();
         } else {
-            dueDate = null;
+            description = null;
         }
 
         double price;
@@ -117,15 +95,9 @@ public class CreateExpenseActivity extends AppCompatActivity {
                     budget.pay(price);
                     budgetRepository.updateBudget(budget);
 
-                    Expense expense = new Expense(1, category, description, LocalDate.now(),
-                            dueDate, price);
+                    Expense expense = new Expense(1, category, description,
+                            LocalDate.now(), price);
                     expensesRepository.insertExpense(expense);
-
-                    if (dueDate != null) {
-                        runOnUiThread(()-> {
-                            expense.scheduleNotification(getApplicationContext());
-                        });
-                    }
 
                     runOnUiThread(() -> {
                         Intent intent = new Intent(this, ExpensesActivity.class);
@@ -153,11 +125,5 @@ public class CreateExpenseActivity extends AppCompatActivity {
     public void goToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
-
-    private boolean categoryRequiresDueDate(TransactionCategory category) {
-        return category == TransactionCategory.BILLS ||
-                category == TransactionCategory.TAXES ||
-                category == TransactionCategory.LOAN_SERVICING;
     }
 }

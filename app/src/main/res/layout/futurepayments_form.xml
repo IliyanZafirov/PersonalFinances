@@ -8,7 +8,7 @@
     android:background="@color/medium_red">
 
     <Spinner
-        android:id="@+id/spinnerCategory"
+        android:id="@+id/spinnerCategoryForFuturePayment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -18,16 +18,7 @@
         android:textColor="@color/yellow_canary_variant" />
 
     <EditText
-        android:id="@+id/editPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Price"
-        android:inputType="numberDecimal"
-        android:minHeight="48dp"
-        android:textColor="@color/yellow_canary_variant" />
-
-    <EditText
-        android:id="@+id/editDescription"
+        android:id="@+id/editDescriptionForFuturePayment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Description"
@@ -35,8 +26,17 @@
         android:minHeight="48dp"
         android:textColor="@color/yellow_canary_variant" />
 
+    <EditText
+        android:id="@+id/editDueDateForFuturePayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Due Date (yyyy-mm-dd)"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColor="@color/yellow_canary_variant" />
+
     <Button
-        android:id="@+id/btnSaveExpense"
+        android:id="@+id/btnSaveFuturePayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
