@@ -62,7 +62,7 @@ public class FuturePayment {
         if (dueDate != null && dueDate.isAfter(LocalDate.now())) {
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             Intent notificationIntent = new Intent(context, NotificationReceiver.class);
-            notificationIntent.putExtra("expense_description", description);
+            notificationIntent.putExtra("future_payment_description", description);
 
             // Convert LocalDate to milliseconds since the Unix epoch
             long triggerMillis = LocalDateToMillis(dueDate);

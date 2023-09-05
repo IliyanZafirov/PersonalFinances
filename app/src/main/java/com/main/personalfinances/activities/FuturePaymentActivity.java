@@ -3,7 +3,6 @@ package com.main.personalfinances.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -31,7 +30,6 @@ public class FuturePaymentActivity extends AppCompatActivity {
     private FuturePaymentDao futurePaymentDao;
 
     private ExecutorService databaseWriteExecutor;
-    private FuturePaymentAdapter adapter;
 
 
     @Override
@@ -52,7 +50,7 @@ public class FuturePaymentActivity extends AppCompatActivity {
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
         RecyclerView recyclerView = findViewById(R.id.futurepayments_recyclerView);
         LiveData<List<FuturePayment>> liveDataFuturePaymentList = futurePaymentRepository.getAllFuturePayments();
-        adapter = new FuturePaymentAdapter(liveDataFuturePaymentList);
+        FuturePaymentAdapter adapter = new FuturePaymentAdapter(liveDataFuturePaymentList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 

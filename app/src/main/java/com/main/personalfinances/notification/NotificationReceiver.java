@@ -15,25 +15,25 @@ public class NotificationReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String expenseDescription = intent.getStringExtra("expense_description");
-        showNotification(context, expenseDescription);
+        String futurePaymentDescription = intent.getStringExtra("future_payment_description");
+        showNotification(context, futurePaymentDescription);
     }
 
-    private void showNotification(Context context, String expenseDescription) {
+    private void showNotification(Context context, String futurePaymentDescription) {
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
-                    "expense_channel", "Expense Notifications",
+                    "future_payment_channel", "Payment Notifications",
                     NotificationManager.IMPORTANCE_DEFAULT);
             notificationManager.createNotificationChannel(channel);
         }
         NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(context, "expense_channel")
+                new NotificationCompat.Builder(context, "future_payment_channel")
                         .setSmallIcon(R.drawable.ic_notification)
-                        .setContentTitle("Expense Due")
-                        .setContentText("Don't forget to pay: " + expenseDescription)
+                        .setContentTitle("Payment Due")
+                        .setContentText("Don't forget to pay: " + futurePaymentDescription)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         notificationManager.notify(0, builder.build());
