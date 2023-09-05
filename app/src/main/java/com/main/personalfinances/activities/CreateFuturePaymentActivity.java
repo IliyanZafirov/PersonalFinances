@@ -121,18 +121,21 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                 LocalDateTime dueDate = LocalDateTime.parse(dueDateText, formatter);
+                if (!LocalDateTime.now().isAfter(dueDate)) {
+                    databaseWriteExecutor.execute(() -> {
+                        FuturePayment futurePayment = new FuturePayment(1, category, description, dueDate);
+                        futurePaymentRepository.insertFuturePayment(futurePayment);
 
-                databaseWriteExecutor.execute(() -> {
-                    FuturePayment futurePayment = new FuturePayment(1, category, description, dueDate);
-                    futurePaymentRepository.insertFuturePayment(futurePayment);
-
-                    runOnUiThread(() -> {
-                        futurePayment.scheduleNotification(getApplicationContext());
-                        Intent intent = new Intent(this, FuturePaymentActivity.class);
-                        startActivity(intent);
-                        finish();
+                        runOnUiThread(() -> {
+                            futurePayment.scheduleNotification(getApplicationContext());
+                            Intent intent = new Intent(this, FuturePaymentActivity.class);
+                            startActivity(intent);
+                            finish();
+                        });
                     });
-                });
+                } else {
+                    showToast("Date can't be in the past");
+                }
             } catch (DateTimeParseException e) {
                 showToast("Invalid date format. Please use yyyy-MM-dd HH:mm");
             }
