@@ -29,6 +29,8 @@ import java.util.concurrent.Executors;
 
 public class ExpensesActivity extends AppCompatActivity {
 
+    // TODO: DEBUG THIS CHECK WHY YOU DON'T GET MESSAGE FOR PRICE OR DESCRIPTION WHEN ADDING
+
     private PersonalFinancesDatabase appDatabase;
     private ExpenseDao expenseDao;
     private ExpensesRepository expensesRepository;

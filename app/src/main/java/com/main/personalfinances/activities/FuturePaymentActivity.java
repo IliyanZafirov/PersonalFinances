@@ -25,6 +25,8 @@ import java.util.concurrent.Executors;
 
 public class FuturePaymentActivity extends AppCompatActivity {
 
+    // TODO: IF NO FUTURE PAYMENTS SHOW TEXT VIEW -> IT SEEMS LIKE YOU DO NOT HAVE ANY FUTURE PAYMENTS
+
     private PersonalFinancesDatabase appDatabase;
     private FuturePaymentRepository futurePaymentRepository;
     private FuturePaymentDao futurePaymentDao;
