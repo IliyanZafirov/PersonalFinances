@@ -62,19 +62,16 @@ public class BudgetActivity extends AppCompatActivity {
 
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
 
-        databaseWriteExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                Budget budget = budgetRepository.getBudget();
-                if(budget != null) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            monthlyBudget.setText("Monthly budget: " + String.valueOf(budget.getStartingAmount()));
-                            currentBudget.setText("Current amount: " + String.valueOf(budget.getCurrentAmount()));
-                        }
-                    });
-                }
+        databaseWriteExecutor.execute(() -> {
+            Budget budget = budgetRepository.getBudget();
+            if(budget != null) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        monthlyBudget.setText("Monthly budget: " + budget.getStartingAmount());
+                        currentBudget.setText("Current amount: " + budget.getCurrentAmount());
+                    }
+                });
             }
         });
 
@@ -109,9 +106,11 @@ public class BudgetActivity extends AppCompatActivity {
                         budget.setStartingAmount(Double.valueOf(newBudget));
                         budget.setCurrentAmount(Double.valueOf(newBudget));
                         budgetRepository.updateBudget(budget);
-                        expensesRepository.deleteAllExpenses();
-                        monthlyBudget.setText("Monthly Budget: " + String.valueOf(budget.getStartingAmount()));
-                        currentBudget.setText("Current Amount: " + String.valueOf(budget.getCurrentAmount()));
+                        if (expensesRepository.getAllExpenses() != null) {
+                            expensesRepository.deleteAllExpenses();
+                        }
+                        monthlyBudget.setText("Monthly Budget: " + budget.getStartingAmount());
+                        currentBudget.setText("Current Amount: " + budget.getCurrentAmount());
                     });
                 } else {
                     Toast.makeText(BudgetActivity.this, "You didn't enter a valid amount", Toast.LENGTH_SHORT).show();
@@ -128,6 +127,7 @@ public class BudgetActivity extends AppCompatActivity {
     public void goToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public boolean isValidNumber(String numberString) {

@@ -184,6 +184,7 @@ public class SavingsActivity extends AppCompatActivity {
     public void goToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public boolean isValidNumber(String numberString) {

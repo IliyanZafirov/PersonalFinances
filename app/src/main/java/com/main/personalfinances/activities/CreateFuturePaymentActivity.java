@@ -98,6 +98,7 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
                             futurePayment.scheduleNotification(getApplicationContext());
                             Intent intent = new Intent(this, FuturePaymentActivity.class);
                             startActivity(intent);
+                            finish();
                         });
                     });
                 }
@@ -132,5 +133,6 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
     public void goToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }

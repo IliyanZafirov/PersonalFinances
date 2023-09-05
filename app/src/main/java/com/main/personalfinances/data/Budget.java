@@ -41,7 +41,7 @@ public class Budget {
     }
 
     public void pay(double amountToPay) {
-        if(amountToPay > 0 && amountToPay < currentAmount) {
+        if(amountToPay > 0 && amountToPay <= currentAmount) {
             currentAmount = currentAmount - amountToPay;
         }
     }

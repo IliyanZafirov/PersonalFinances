@@ -13,11 +13,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.main.personalfinances.R;
 import com.main.personalfinances.daos.BudgetDao;
@@ -39,15 +41,16 @@ public class MainActivity extends AppCompatActivity {
 
     private AlertDialog nameInsertDialog;
 
-    BudgetDao budgetDao;
+    private BudgetDao budgetDao;
 
-    BudgetRepository budgetRepository;
+    private BudgetRepository budgetRepository;
 
-    SavingsDao savingsDao;
+    private SavingsDao savingsDao;
 
-    SavingsRepository savingsRepository;
+    private SavingsRepository savingsRepository;
 
-    SharedPreferences userSharedPref;
+    private SharedPreferences userSharedPref;
+    private boolean doubleBackToExitPressedOnce = false;
 
     private TextView greetingTextView;
     private ExecutorService databaseWriteExecutor;
@@ -172,6 +175,26 @@ public class MainActivity extends AppCompatActivity {
         } else {
             String username = userSharedPref.getString("1", "User");
             greetingTextView.setText("Hello, " + username);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            // If the user presses back again within a short time, exit the app
+            finish();
+        } else {
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+
+            // Reset the flag after a short delay (e.g., 2 seconds)
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 2000); // 2 seconds
         }
     }
 
