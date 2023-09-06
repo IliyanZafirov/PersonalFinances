@@ -9,7 +9,6 @@ import com.main.personalfinances.data.Savings;
 
 @Dao
 public interface SavingsDao {
-
     @Insert
     long insertSavings(Savings savings);
 

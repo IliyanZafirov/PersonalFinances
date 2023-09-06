@@ -92,8 +92,6 @@ public class SavingsActivity extends AppCompatActivity {
                 addSavings(view);
             }
         });
-
-
     }
 
     private void setNewGoal() {

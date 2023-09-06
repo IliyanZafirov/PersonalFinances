@@ -56,7 +56,6 @@ public class FuturePaymentAdapter extends RecyclerView.Adapter<FuturePaymentAdap
         return futurePaymentList.size();
     }
 
-
     class FuturePaymentViewHolder extends RecyclerView.ViewHolder {
 
         EditText editCategory;

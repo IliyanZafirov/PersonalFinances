@@ -24,7 +24,6 @@ import com.main.personalfinances.daos.ExpenseDao;
 @TypeConverters({LocalDateConverter.class, LocalDateTimeConverter.class})
 public abstract class PersonalFinancesDatabase extends RoomDatabase {
 
-
     public abstract BudgetDao budgetDao();
     public abstract ExpenseDao expenseDao();
     public abstract SavingsDao savingsDao();

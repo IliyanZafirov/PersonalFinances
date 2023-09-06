@@ -44,6 +44,7 @@ public class FuturePaymentActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         FuturePaymentDao futurePaymentDao = appDatabase.futurePaymentDao();
         futurePaymentRepository = new FuturePaymentRepository(futurePaymentDao);
         databaseWriteExecutor = Executors.newSingleThreadExecutor();

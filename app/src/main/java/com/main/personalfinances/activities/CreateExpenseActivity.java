@@ -32,7 +32,6 @@ public class CreateExpenseActivity extends AppCompatActivity {
     private PersonalFinancesDatabase appDatabase;
     private ExpensesRepository expensesRepository;
     private BudgetRepository budgetRepository;
-
     private ExecutorService databaseWriteExecutor;
 
     @Override
@@ -43,7 +42,6 @@ public class CreateExpenseActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.form_toolbar);
         setSupportActionBar(myToolbar);
 
-
         try {
             appDatabase = PersonalFinancesDatabase.getDatabase(this);
             ExpenseDao expenseDao = appDatabase.expenseDao();
@@ -53,6 +51,7 @@ public class CreateExpenseActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
 
         Spinner categorySpinner = findViewById(R.id.spinnerCategory);

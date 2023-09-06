@@ -36,7 +36,6 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
 
     private PersonalFinancesDatabase appDatabase;
     private FuturePaymentRepository futurePaymentRepository;
-
     private ExecutorService databaseWriteExecutor;
     private TextView selectedDateTimeText;
 
@@ -54,6 +53,7 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         FuturePaymentDao futurePaymentDao = appDatabase.futurePaymentDao();
         futurePaymentRepository = new FuturePaymentRepository(futurePaymentDao);
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
@@ -90,7 +90,6 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
                         calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.show();
             }
-
         });
         saveFuturePaymentButton.setOnClickListener(new View.OnClickListener() {
             @Override

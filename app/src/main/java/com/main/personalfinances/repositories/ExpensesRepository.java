@@ -11,10 +11,7 @@ public class ExpensesRepository {
     ExpenseDao expenseDao;
 
     public ExpensesRepository(ExpenseDao expenseDao) { this.expenseDao = expenseDao; }
-
     public void insertExpense(Expense expense) { expenseDao.insertExpense(expense);}
-
     public void deleteAllExpenses() { expenseDao.deleteAllExpenses();}
-
     public LiveData<List<Expense>> getAllExpenses() { return expenseDao.getAllExpenses(); }
 }

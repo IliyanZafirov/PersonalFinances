@@ -29,16 +29,12 @@ import java.util.concurrent.Executors;
 
 public class ExpensesActivity extends AppCompatActivity {
 
-    // TODO: DEBUG THIS CHECK WHY YOU DON'T GET MESSAGE FOR PRICE OR DESCRIPTION WHEN ADDING
-
     private PersonalFinancesDatabase appDatabase;
     private ExpenseDao expenseDao;
     private ExpensesRepository expensesRepository;
     private BudgetDao budgetDao;
     private BudgetRepository budgetRepository;
-
     private ExecutorService databaseWriteExecutor;
-
     private ExpenseAdapter adapter;
 
     @Override
@@ -59,6 +55,7 @@ public class ExpensesActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
         RecyclerView recyclerView = findViewById(R.id.expenses_recyclerView);
         LiveData<List<Expense>> liveDataExpenseList = expensesRepository.getAllExpenses();
@@ -93,7 +90,6 @@ public class ExpensesActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
-
     }
 
     public void goToForm(View view) {

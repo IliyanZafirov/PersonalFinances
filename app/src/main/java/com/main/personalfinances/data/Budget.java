@@ -11,10 +11,7 @@ import androidx.room.PrimaryKey;
 public class Budget {
     @PrimaryKey(autoGenerate = true)
     private int id;
-
-
     private double startingAmount;
-
     private double currentAmount;
 
     public Budget(double startingAmount) {
@@ -25,20 +22,15 @@ public class Budget {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
-
     public double getStartingAmount() {
         return startingAmount;
     }
-
     public void setStartingAmount(double startingAmount) {
         this.startingAmount = startingAmount;
     }
-
     public double getCurrentAmount() {
         return currentAmount;
     }
@@ -51,7 +43,6 @@ public class Budget {
             currentAmount = currentAmount - amountToPay;
         }
     }
-
     public void setCurrentAmount(double currentAmount) {
         this.currentAmount = currentAmount;
     }

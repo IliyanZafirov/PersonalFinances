@@ -15,7 +15,6 @@ public class FuturePaymentRepository {
         this.futurePaymentDao = futurePaymentDao;
     }
 
-
     public void insertFuturePayment(FuturePayment futurePayment) {
         futurePaymentDao.insertFuturePayment(futurePayment);
     }

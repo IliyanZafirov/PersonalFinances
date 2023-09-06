@@ -24,7 +24,6 @@ public class FuturePayment {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-
     private final int budgetId;
     private final FuturePaymentCategory category;
     private final String description;
@@ -42,26 +41,21 @@ public class FuturePayment {
     public void setId(int id) {
         this.id = id;
     }
-
     public int getId() {
         return id;
     }
-
     public int getBudgetId() {
         return budgetId;
     }
     public String getDescription() {
         return description;
     }
-
     public FuturePaymentCategory getCategory() {
         return category;
     }
-
     public LocalDateTime getDueDate() {
         return dueDate;
     }
-    
     public void scheduleNotification(Context context) {
         if (dueDate != null && dueDate.isAfter(LocalDateTime.now())) {
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -78,7 +72,6 @@ public class FuturePayment {
             AlarmManagerCompat.setExactAndAllowWhileIdle(alarmManager, AlarmManager.RTC_WAKEUP, triggerMillis, pendingIntent);
         }
     }
-
     public static long LocalDateTimeToMillis(LocalDateTime localDateTime) {
         return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }

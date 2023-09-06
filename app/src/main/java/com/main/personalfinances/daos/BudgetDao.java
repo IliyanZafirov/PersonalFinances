@@ -9,7 +9,6 @@ import com.main.personalfinances.data.Budget;
 
 @Dao
 public interface BudgetDao {
-
     @Insert
     long insertBudget(Budget budget);
 

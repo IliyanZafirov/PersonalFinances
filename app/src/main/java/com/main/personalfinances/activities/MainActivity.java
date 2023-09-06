@@ -35,23 +35,16 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int PERMISSION_REQUEST_CODE = 123;
     private PersonalFinancesDatabase appDatabase;
-
     private AlertDialog nameUpdateDialog;
-
     private AlertDialog nameInsertDialog;
-
     private BudgetRepository budgetRepository;
-
     private SavingsRepository savingsRepository;
-
     private SharedPreferences userSharedPref;
     private boolean doubleBackToExitPressedOnce = false;
-
     private TextView greetingTextView;
     private ExecutorService databaseWriteExecutor;
-
-    private static final int PERMISSION_REQUEST_CODE = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +63,13 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         greetingTextView = findViewById(R.id.greeting_textview);
+        ImageButton editNameButton = findViewById(R.id.edit_name_image_button);
+
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
 
         userSharedPref = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
-
-        ImageButton editNameButton = findViewById(R.id.edit_name_image_button);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -127,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
 
                 String username = userSharedPref.getString("1", "User");
-
                 greetingTextView.setText("Hello, " + username);
             }
         });

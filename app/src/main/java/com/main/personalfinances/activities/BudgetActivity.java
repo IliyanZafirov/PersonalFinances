@@ -28,12 +28,9 @@ import java.util.concurrent.Executors;
 public class BudgetActivity extends AppCompatActivity {
 
     private PersonalFinancesDatabase appDatabase;
-
     private BudgetRepository budgetRepository;
     private ExpensesRepository expensesRepository;
-
     private ExecutorService databaseWriteExecutor;
-
     private TextView monthlyBudget;
     private TextView currentBudget;
 
@@ -44,10 +41,10 @@ public class BudgetActivity extends AppCompatActivity {
 
         try {
             appDatabase = PersonalFinancesDatabase.getDatabase(this);
-
         } catch(Exception e) {
             e.printStackTrace();
         }
+
         BudgetDao budgetDao = appDatabase.budgetDao();
         budgetRepository = new BudgetRepository(budgetDao);
         ExpenseDao expenseDao = appDatabase.expenseDao();
@@ -77,8 +74,6 @@ public class BudgetActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.budget_toolbar);
         setSupportActionBar(myToolbar);
-
-
     }
 
     private void updateBudget(View view) {
