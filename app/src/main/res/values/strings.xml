@@ -22,6 +22,10 @@
     <string name="spent_last_30_days">Spent last 30 days:</string>
     <string name="add_expense">Add expense</string>
     <string name ="personal_finances_logo">Personal Finances Logo</string>
-
-
+    <string name="category_string">Category</string>
+    <string name="description_string">Description</string>
+    <string name="choose_category">Choose category</string>
+    <string name="due_date_string">Due Date (YYYY-MM-DD THH-MM-SS)</string>
+    <string name="select_date_time_string">Select Date and Time</string>
+    <string name="save_string">Save</string>
 </resources>

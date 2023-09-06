@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:contentDescription="Choose category"
-        android:hint="Category"
+        android:contentDescription="@string/choose_category"
+        android:hint="@string/category_string"
         android:minHeight="48dp"
         android:textColor="@color/black" />
 
@@ -21,7 +21,7 @@
         android:id="@+id/editDescriptionForFuturePayment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Description"
+        android:hint="@string/description_string"
         android:inputType="text"
         android:minHeight="48dp"
         android:textColor="@color/black" />
@@ -30,7 +30,7 @@
         android:id="@+id/editDueDateForFuturePayment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Due Date (YYYY-MM-DD THH-MM-SS)"
+        android:hint="@string/due_date_string"
         android:minHeight="48dp"
         android:textColor="@color/black" />
 
@@ -38,13 +38,12 @@
         android:id="@+id/openDateAndTimePickerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Date and Time" />
+        android:text="@string/select_date_time_string" />
 
     <Button
         android:id="@+id/btnSaveFuturePayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="@string/save_string"
         android:layout_gravity="end" />
-
 </LinearLayout>
