@@ -42,5 +42,4 @@
             android:focusable="false"
             android:textColor="@color/black"/>
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>

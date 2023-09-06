@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:contentDescription="Choose category"
-        android:hint="Category"
+        android:contentDescription="@string/choose_category"
+        android:hint="@string/category_string"
         android:minHeight="48dp"
         android:textColor="@color/yellow_canary_variant" />
 
@@ -21,7 +21,7 @@
         android:id="@+id/editPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Price"
+        android:hint="@string/price_string"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
         android:textColor="@color/yellow_canary_variant" />
@@ -30,7 +30,7 @@
         android:id="@+id/editDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Description"
+        android:hint="@string/description_string"
         android:inputType="text"
         android:minHeight="48dp"
         android:textColor="@color/yellow_canary_variant" />
@@ -39,7 +39,6 @@
         android:id="@+id/btnSaveExpense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="@string/save_string"
         android:layout_gravity="end" />
-
 </LinearLayout>

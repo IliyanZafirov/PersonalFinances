@@ -28,4 +28,6 @@
     <string name="due_date_string">Due Date (YYYY-MM-DD THH-MM-SS)</string>
     <string name="select_date_time_string">Select Date and Time</string>
     <string name="save_string">Save</string>
+    <string name="price_string">Price</string>
+    <string name="purchase_date_string">Purchase Date</string>
 </resources>
