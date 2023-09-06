@@ -46,10 +46,10 @@
 
     <TextView
         android:id="@+id/savings_goal"
-        android:layout_width="270dp"
-        android:layout_height="86dp"
+        android:layout_width="208dp"
+        android:layout_height="83dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="50dp"
         android:background="@color/medium_red"
         android:fontFamily="cursive"
         android:padding="8dp"
@@ -57,18 +57,18 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/savings_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/pf_logo" />
 
     <TextView
         android:id="@+id/saved_amount"
-        android:layout_width="270dp"
-        android:layout_height="86dp"
+        android:layout_width="208dp"
+        android:layout_height="83dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="60dp"
         android:background="@color/medium_red"
         android:fontFamily="cursive"
         android:padding="8dp"
-        android:text="Saved amount: "
+        android:text="@string/saved_amount"
         android:textAlignment="textStart"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -93,11 +93,11 @@
         android:id="@+id/set_savings_goal_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="50dp"
         android:contentDescription="@string/edit_savings_goal"
         app:layout_constraintStart_toEndOf="@+id/savings_goal"
-        app:layout_constraintTop_toBottomOf="@+id/savings_toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/pf_logo"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
 

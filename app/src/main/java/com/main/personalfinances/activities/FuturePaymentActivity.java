@@ -3,7 +3,6 @@ package com.main.personalfinances.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +19,6 @@ import com.main.personalfinances.data.FuturePayment;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 import com.main.personalfinances.repositories.FuturePaymentRepository;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.ExecutorService;

@@ -110,11 +110,7 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
         String dueDateText = selectedDateTimeText.getText().toString();
 
         final String description;
-        if (editDescription.getText().toString() != null) {
-            description = editDescription.getText().toString();
-        } else {
-            description = null;
-        }
+        description = editDescription.getText().toString();
 
         if (!dueDateText.isEmpty()) {
             try {

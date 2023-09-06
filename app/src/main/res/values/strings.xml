@@ -12,6 +12,7 @@
     <string name="futurepayment_activity_button_description">Go to future payments activity</string>
     <string name="edit_user_name">Edit user name</string>
     <string name="set_savings_goal">Savings goal:</string>
+    <string name="saved_amount">Saved amount:</string>
     <string name="add_money">Add Money</string>
     <string name="add_futurepayment">Add Future Payment</string>
     <string name="update_budget">Update Budget</string>

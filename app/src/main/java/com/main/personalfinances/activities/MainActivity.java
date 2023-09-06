@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.POST_NOTIFICATIONS},
                     PERMISSION_REQUEST_CODE);
+            initializeApp();
         } else {
             initializeApp();
         }

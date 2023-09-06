@@ -103,8 +103,8 @@ public class BudgetActivity extends AppCompatActivity {
                 if(isValidNumber(newBudget)) {
                     databaseWriteExecutor.execute(()-> {
                         Budget budget = budgetRepository.getBudget();
-                        budget.setStartingAmount(Double.valueOf(newBudget));
-                        budget.setCurrentAmount(Double.valueOf(newBudget));
+                        budget.setStartingAmount(Double.parseDouble(newBudget));
+                        budget.setCurrentAmount(Double.parseDouble(newBudget));
                         budgetRepository.updateBudget(budget);
                         if (expensesRepository.getAllExpenses() != null) {
                             expensesRepository.deleteAllExpenses();
@@ -132,12 +132,8 @@ public class BudgetActivity extends AppCompatActivity {
 
     public boolean isValidNumber(String numberString) {
         try {
-            Double number = Double.valueOf(numberString);
-            if(number > 0) {
-                return true;
-            } else {
-                return  false;
-            }
+            double number = Double.parseDouble(numberString);
+            return number > 0;
         } catch(NumberFormatException e) {
             e.printStackTrace();
             return false;
