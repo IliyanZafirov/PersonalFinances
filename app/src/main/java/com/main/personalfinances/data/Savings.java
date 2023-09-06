@@ -12,7 +12,7 @@ public class Savings {
     @PrimaryKey(autoGenerate = true)
     private long id;
 
-    private long budgetId;
+    private final long budgetId;
     private double targetAmount;
 
     private double currentAmount;
@@ -49,9 +49,6 @@ public class Savings {
         return budgetId;
     }
 
-    public void setBudgetId(int budgetId) {
-        this.budgetId = budgetId;
-    }
     public long getId() {
         return id;
     }

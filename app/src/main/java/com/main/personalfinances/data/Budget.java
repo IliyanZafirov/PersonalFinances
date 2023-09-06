@@ -45,7 +45,6 @@ public class Budget {
 
     /**
      * Deducts money from itself on payment or when sparing savings
-     * @param amountToPay
      */
     public void pay(double amountToPay) {
         if(amountToPay > 0 && amountToPay <= currentAmount) {

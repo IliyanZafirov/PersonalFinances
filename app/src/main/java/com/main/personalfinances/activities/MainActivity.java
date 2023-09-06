@@ -41,11 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AlertDialog nameInsertDialog;
 
-    private BudgetDao budgetDao;
-
     private BudgetRepository budgetRepository;
-
-    private SavingsDao savingsDao;
 
     private SavingsRepository savingsRepository;
 
@@ -67,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             appDatabase = PersonalFinancesDatabase.getDatabase(this);
-            budgetDao = appDatabase.budgetDao();
+            BudgetDao budgetDao = appDatabase.budgetDao();
             budgetRepository = new BudgetRepository(budgetDao);
-            savingsDao = appDatabase.savingsDao();
+            SavingsDao savingsDao = appDatabase.savingsDao();
             savingsRepository = new SavingsRepository(savingsDao);
         } catch (Exception e) {
             e.printStackTrace();

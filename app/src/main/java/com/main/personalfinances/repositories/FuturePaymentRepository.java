@@ -20,10 +20,6 @@ public class FuturePaymentRepository {
         futurePaymentDao.insertFuturePayment(futurePayment);
     }
 
-    public void updateFuturePayment(FuturePayment futurePayment) {
-        futurePaymentDao.updateFuturePayment(futurePayment);
-    }
-
     public void deleteFuturePayment(FuturePayment futurePayment) {
         futurePaymentDao.deleteFuturePayment(futurePayment);
     }

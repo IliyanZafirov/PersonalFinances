@@ -35,11 +35,9 @@ import java.util.concurrent.Executors;
 public class CreateFuturePaymentActivity extends AppCompatActivity {
 
     private PersonalFinancesDatabase appDatabase;
-    private FuturePaymentDao futurePaymentDao;
     private FuturePaymentRepository futurePaymentRepository;
 
     private ExecutorService databaseWriteExecutor;
-    private Button openDateAndTimeButton;
     private TextView selectedDateTimeText;
 
     @Override
@@ -56,7 +54,7 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        futurePaymentDao = appDatabase.futurePaymentDao();
+        FuturePaymentDao futurePaymentDao = appDatabase.futurePaymentDao();
         futurePaymentRepository = new FuturePaymentRepository(futurePaymentDao);
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
 
@@ -67,7 +65,7 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         categorySpinner.setAdapter(categoryAdapter);
 
-        openDateAndTimeButton = findViewById(R.id.openDateAndTimePickerButton);
+        Button openDateAndTimeButton = findViewById(R.id.openDateAndTimePickerButton);
         selectedDateTimeText = findViewById(R.id.editDueDateForFuturePayment);
         Button saveFuturePaymentButton = findViewById(R.id.btnSaveFuturePayment);
 

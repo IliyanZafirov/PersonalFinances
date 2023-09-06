@@ -30,9 +30,7 @@ import java.util.concurrent.Executors;
 public class CreateExpenseActivity extends AppCompatActivity {
 
     private PersonalFinancesDatabase appDatabase;
-    private ExpenseDao expenseDao;
     private ExpensesRepository expensesRepository;
-    private BudgetDao budgetDao;
     private BudgetRepository budgetRepository;
 
     private ExecutorService databaseWriteExecutor;
@@ -48,9 +46,9 @@ public class CreateExpenseActivity extends AppCompatActivity {
 
         try {
             appDatabase = PersonalFinancesDatabase.getDatabase(this);
-            expenseDao = appDatabase.expenseDao();
+            ExpenseDao expenseDao = appDatabase.expenseDao();
             expensesRepository = new ExpensesRepository(expenseDao);
-            budgetDao = appDatabase.budgetDao();
+            BudgetDao budgetDao = appDatabase.budgetDao();
             budgetRepository = new BudgetRepository(budgetDao);
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,11 +78,7 @@ public class CreateExpenseActivity extends AppCompatActivity {
         EditText editDescription = findViewById(R.id.editDescription);
 
         final String description;
-        if (editDescription.getText().toString() != null) {
-            description = editDescription.getText().toString();
-        } else {
-            description = null;
-        }
+        description = editDescription.getText().toString();
 
         double price;
         try {

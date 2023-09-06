@@ -29,17 +29,13 @@ public class BudgetActivity extends AppCompatActivity {
 
     private PersonalFinancesDatabase appDatabase;
 
-    private BudgetDao budgetDao;
     private BudgetRepository budgetRepository;
-    private ExpenseDao expenseDao;
     private ExpensesRepository expensesRepository;
 
     private ExecutorService databaseWriteExecutor;
 
     private TextView monthlyBudget;
     private TextView currentBudget;
-    private Button updateBudgetButton;
-    private AlertDialog updateBudgetDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,25 +48,22 @@ public class BudgetActivity extends AppCompatActivity {
         } catch(Exception e) {
             e.printStackTrace();
         }
-        budgetDao = appDatabase.budgetDao();
+        BudgetDao budgetDao = appDatabase.budgetDao();
         budgetRepository = new BudgetRepository(budgetDao);
-        expenseDao = appDatabase.expenseDao();
+        ExpenseDao expenseDao = appDatabase.expenseDao();
         expensesRepository = new ExpensesRepository(expenseDao);
         monthlyBudget = findViewById(R.id.monthly_budget);
         currentBudget = findViewById(R.id.current_budget);
-        updateBudgetButton = findViewById(R.id.update_budget_button);
+        Button updateBudgetButton = findViewById(R.id.update_budget_button);
 
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
 
         databaseWriteExecutor.execute(() -> {
             Budget budget = budgetRepository.getBudget();
             if(budget != null) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        monthlyBudget.setText("Monthly budget: " + budget.getStartingAmount());
-                        currentBudget.setText("Current amount: " + budget.getCurrentAmount());
-                    }
+                runOnUiThread(() -> {
+                    monthlyBudget.setText("Monthly budget: " + budget.getStartingAmount());
+                    currentBudget.setText("Current amount: " + budget.getCurrentAmount());
                 });
             }
         });
@@ -82,7 +75,7 @@ public class BudgetActivity extends AppCompatActivity {
             }
         });
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.budget_toolbar);
+        Toolbar myToolbar = findViewById(R.id.budget_toolbar);
         setSupportActionBar(myToolbar);
 
 
@@ -120,7 +113,7 @@ public class BudgetActivity extends AppCompatActivity {
 
         builder.setNegativeButton("Cancel", null);
 
-        updateBudgetDialog = builder.create();
+        AlertDialog updateBudgetDialog = builder.create();
         updateBudgetDialog.show();
     }
 

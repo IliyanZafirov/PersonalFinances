@@ -57,18 +57,6 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         return expenseList.size();
     }
 
-    public void setExpenseList(List<Expense> expenseList) {
-        this.expenseList = expenseList;
-    }
-
-    public List<Expense> getExpenseList() {
-        return expenseList;
-    }
-
-    public void addExpense(Expense expense) {
-        expenseList.add(expense);
-    }
-
     class ExpenseViewHolder extends RecyclerView.ViewHolder {
 
         EditText editCategory;

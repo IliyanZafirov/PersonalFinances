@@ -28,8 +28,6 @@ public class FuturePaymentActivity extends AppCompatActivity {
 
     private PersonalFinancesDatabase appDatabase;
     private FuturePaymentRepository futurePaymentRepository;
-    private FuturePaymentDao futurePaymentDao;
-
     private ExecutorService databaseWriteExecutor;
 
 
@@ -46,7 +44,7 @@ public class FuturePaymentActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        futurePaymentDao = appDatabase.futurePaymentDao();
+        FuturePaymentDao futurePaymentDao = appDatabase.futurePaymentDao();
         futurePaymentRepository = new FuturePaymentRepository(futurePaymentDao);
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
         RecyclerView recyclerView = findViewById(R.id.futurepayments_recyclerView);
