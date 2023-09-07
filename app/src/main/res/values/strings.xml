@@ -9,7 +9,7 @@
     <string name="your_budget">Your budget</string>
     <string name="home_activity_button_description">Go to home activity</string>
     <string name="expense_activity_button_description">Go to expenses activity</string>
-    <string name="futurepayment_activity_button_description">Go to future payments activity</string>
+    <string name="future_payment_activity_button_description">Go to future payments activity</string>
     <string name="edit_user_name">Edit user name</string>
     <string name="set_savings_goal">Savings goal:</string>
     <string name="saved_amount">Saved amount:</string>
