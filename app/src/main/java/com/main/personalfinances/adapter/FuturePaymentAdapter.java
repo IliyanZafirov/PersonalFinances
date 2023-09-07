@@ -44,7 +44,7 @@ public class FuturePaymentAdapter extends RecyclerView.Adapter<FuturePaymentAdap
     @Override
     public FuturePaymentAdapter.FuturePaymentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.futurepayment_item, parent, false);
+                R.layout.future_payment_item, parent, false);
         return new FuturePaymentAdapter.FuturePaymentViewHolder(itemView);
     }
 

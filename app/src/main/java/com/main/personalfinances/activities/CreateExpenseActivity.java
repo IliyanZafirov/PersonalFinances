@@ -36,9 +36,9 @@ public class CreateExpenseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form);
+        setContentView(R.layout.activity_expense_form);
 
-        Toolbar myToolbar = findViewById(R.id.form_toolbar);
+        Toolbar myToolbar = findViewById(R.id.expense_form_toolbar);
         setSupportActionBar(myToolbar);
 
         try {

@@ -42,7 +42,7 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_futurepayment_form);
+        setContentView(R.layout.activity_future_payment_form);
 
         Toolbar myToolbar = findViewById(R.id.future_payments_form_toolbar);
         setSupportActionBar(myToolbar);

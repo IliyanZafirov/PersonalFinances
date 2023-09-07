@@ -8,7 +8,7 @@
 
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/form_toolbar"
+        android:id="@+id/expense_form_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginTop="16dp"
@@ -50,7 +50,7 @@
         android:layout_marginStart="84dp"
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/expense_form_toolbar"
         app:srcCompat="@drawable/ic_pf_logo"
         android:contentDescription="@string/personal_finances_logo"/>
 
