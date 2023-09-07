@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
         userSharedPref = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
 
-        // TODO: if this doesn't work on lower API, change POST_NOTIFICATIONS with VIBRATE
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,

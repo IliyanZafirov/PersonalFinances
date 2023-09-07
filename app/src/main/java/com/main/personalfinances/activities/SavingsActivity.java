@@ -39,7 +39,6 @@ public class SavingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_savings);
-
         Toolbar myToolbar = findViewById(R.id.savings_toolbar);
         setSupportActionBar(myToolbar);
 
@@ -60,15 +59,7 @@ public class SavingsActivity extends AppCompatActivity {
         Button add_money_button = findViewById(R.id.add_money_button);
         ImageButton setSavingsGoalButton = findViewById(R.id.set_savings_goal_button);
 
-        databaseWriteExecutor.execute(() -> {
-            Savings savings = savingsRepository.getSavings();
-            if (savings != null) {
-                runOnUiThread(() -> {
-                    savings_goal_text_view.setText("Savings goal: " + savings.getTargetAmount());
-                    saved_amount_text_view.setText("Saved amount: " + savings.getCurrentAmount());
-                });
-            }
-        });
+        setSavingsGoalAndSavingsAmount();
 
         setSavingsGoalButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +71,18 @@ public class SavingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addSavings(view);
+            }
+        });
+    }
+
+    private void setSavingsGoalAndSavingsAmount() {
+        databaseWriteExecutor.execute(() -> {
+            Savings savings = savingsRepository.getSavings();
+            if (savings != null) {
+                runOnUiThread(() -> {
+                    savings_goal_text_view.setText("Savings goal: " + savings.getTargetAmount());
+                    saved_amount_text_view.setText("Saved amount: " + savings.getCurrentAmount());
+                });
             }
         });
     }

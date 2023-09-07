@@ -86,7 +86,6 @@ public class FuturePayment {
      * @return Unix timestamp in milliseconds
      */
     public static long LocalDateTimeToMillis(LocalDateTime localDateTime) {
-        //LocalDateTime doesn't use
         return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 }

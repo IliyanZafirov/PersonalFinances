@@ -104,7 +104,6 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
         EditText editDescription = findViewById(R.id.editDescriptionForFuturePayment);
 
         String dueDateText = selectedDateTimeText.getText().toString();
-
         String description = editDescription.getText().toString();
 
         if (!dueDateText.isEmpty()) {
