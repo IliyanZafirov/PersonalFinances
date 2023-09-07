@@ -4,7 +4,7 @@
     <string name="budget">Budget</string>
     <string name="transactions">Transactions</string>
     <string name="savings">Savings</string>
-    <string name="futurepayments">Future Payments</string>
+    <string name="future_payments">Future Payments</string>
     <string name="no_future_payments_due">No future payments due</string>
     <string name="your_budget">Your budget</string>
     <string name="home_activity_button_description">Go to home activity</string>
@@ -14,7 +14,7 @@
     <string name="set_savings_goal">Savings goal:</string>
     <string name="saved_amount">Saved amount:</string>
     <string name="add_money">Add Money</string>
-    <string name="add_futurepayment">Add Future Payment</string>
+    <string name="add_future_payment">Add Future Payment</string>
     <string name="update_budget">Update Budget</string>
     <string name="edit_savings_goal">Set savings goal</string>
     <string name="monthly_budget">Monthly Budget:</string>

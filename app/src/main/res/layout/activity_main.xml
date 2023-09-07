@@ -104,7 +104,7 @@
         android:drawableStart="@drawable/ic_future_payments"
         android:fontFamily="cursive"
         android:onClick="goToFuturePayments"
-        android:text="@string/futurepayments"
+        android:text="@string/future_payments"
         android:textAlignment="textStart"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_large"

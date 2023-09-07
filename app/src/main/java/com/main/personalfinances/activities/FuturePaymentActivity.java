@@ -48,7 +48,7 @@ public class FuturePaymentActivity extends AppCompatActivity {
         FuturePaymentDao futurePaymentDao = appDatabase.futurePaymentDao();
         futurePaymentRepository = new FuturePaymentRepository(futurePaymentDao);
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
-        RecyclerView recyclerView = findViewById(R.id.futurepayments_recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.future_payments_recyclerView);
         LiveData<List<FuturePayment>> liveDataFuturePaymentList = futurePaymentRepository.getAllFuturePayments();
         FuturePaymentAdapter adapter = new FuturePaymentAdapter(liveDataFuturePaymentList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

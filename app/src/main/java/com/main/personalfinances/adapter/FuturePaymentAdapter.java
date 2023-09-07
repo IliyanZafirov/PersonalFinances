@@ -23,8 +23,8 @@ import java.util.List;
  */
 public class FuturePaymentAdapter extends RecyclerView.Adapter<FuturePaymentAdapter.FuturePaymentViewHolder>{
 
-    private List<FuturePayment> futurePaymentList = new ArrayList<>();
-    private LiveData<List<FuturePayment>> liveDataFuturePaymentList;
+    private final List<FuturePayment> futurePaymentList = new ArrayList<>();
+    private final LiveData<List<FuturePayment>> liveDataFuturePaymentList;
 
     public FuturePaymentAdapter(LiveData<List<FuturePayment>> liveDataFuturePaymentList) {
         this.liveDataFuturePaymentList = liveDataFuturePaymentList;

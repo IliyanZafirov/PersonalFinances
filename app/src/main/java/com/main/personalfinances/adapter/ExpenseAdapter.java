@@ -23,8 +23,8 @@ import java.util.List;
  */
 public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> {
 
-    private List<Expense> expenseList = new ArrayList<>();
-    private LiveData<List<Expense>> liveDataExpenseList;
+    private final List<Expense> expenseList = new ArrayList<>();
+    private final LiveData<List<Expense>> liveDataExpenseList;
 
     public ExpenseAdapter(LiveData<List<Expense>> liveDataExpenseList) {
         this.liveDataExpenseList = liveDataExpenseList;

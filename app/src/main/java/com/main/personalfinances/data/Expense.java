@@ -18,8 +18,8 @@ public class Expense {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private final int budgetId;
-    private TransactionCategory category;
-    private String description;
+    private final TransactionCategory category;
+    private final String description;
     private final LocalDate dateAdded;
     private final double price;
 

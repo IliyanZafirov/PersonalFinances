@@ -8,7 +8,7 @@
 
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/transactions_toolbar"
+        android:id="@+id/future_payments_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -21,7 +21,7 @@
 
 
         <ImageButton
-            android:id="@+id/transactions_to_main_button"
+            android:id="@+id/future_payments_to_main_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_home"
@@ -39,7 +39,7 @@
         android:layout_marginTop="20dp"
         android:contentDescription="@string/personal_finances_logo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transactions_toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/future_payments_toolbar"
         app:srcCompat="@drawable/ic_pf_logo" />
 
 
@@ -49,9 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="156dp"
         android:layout_marginBottom="6dp"
-        android:contentDescription="@string/add_futurepayment"
+        android:contentDescription="@string/add_future_payment"
         android:onClick="goToFuturePaymentForm"
-        app:layout_constraintBottom_toTopOf="@+id/futurepayments_recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/future_payments_recyclerView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pf_logo"
         app:layout_constraintVertical_bias="0.582"
@@ -74,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button_add_future_payment" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/futurepayments_recyclerView"
+        android:id="@+id/future_payments_recyclerView"
         android:layout_width="309dp"
         android:layout_height="411dp"
         android:layout_marginBottom="16dp"

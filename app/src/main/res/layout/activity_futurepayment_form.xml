@@ -8,7 +8,7 @@
 
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/futurepayments_form_toolbar"
+        android:id="@+id/future_payments_form_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginTop="16dp"
@@ -22,17 +22,17 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <ImageButton
-            android:id="@+id/futurepayment_form_to_futurepayment_button"
+            android:id="@+id/future_payment_form_to_future_payment_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/futurepayments"
+            android:contentDescription="@string/future_payments"
             android:minHeight="48dp"
             android:onClick="goToFuturePayments"
             app:srcCompat="?attr/homeAsUpIndicator"
             android:layout_gravity="start" />
 
         <ImageButton
-            android:id="@+id/form_to_main_button"
+            android:id="@+id/future_payment_form_to_main_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -50,13 +50,13 @@
         android:layout_marginStart="84dp"
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/futurepayments_form_toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/future_payments_form_toolbar"
         app:srcCompat="@drawable/ic_pf_logo"
         android:contentDescription="@string/personal_finances_logo"/>
 
     <include
-        android:id="@+id/futurepayment_form"
-        layout="@layout/futurepayments_form"
+        android:id="@+id/future_payment_form"
+        layout="@layout/future_payments_form"
         android:layout_width="321dp"
         android:layout_height="265dp"
         android:layout_marginStart="10dp"
