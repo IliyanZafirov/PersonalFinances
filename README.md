@@ -29,6 +29,24 @@ Welcome to the Personal Finance App! This application is designed to help you ma
 - Allocate funds to different savings goals.
 - Visualize your savings journey and celebrate milestones.
 
+## Screenshots
+![Budget](pf_screenshots/main.png)
+*Screenshot 1: Displaying main activity*
+
+![Budget](pf_screenshots/budget.png)
+*Screenshot 2: Displaying budget activity*
+
+![Budget](pf_screenshots/savings.png)
+*Screenshot 3: Displaying savings activity*
+
+![Budget](pf_screenshots/transactions.png)
+*Screenshot 4: Displaying transactions activity*
+
+![Budget](pf_screenshots/future_payments.png)
+*Screenshot 5: Displaying future payments activity*
+
+![Budget](pf_screenshots/notification.png)
+*Screenshot 6: Displaying notification*
 
 ## License
 
