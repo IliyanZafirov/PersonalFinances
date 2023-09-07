@@ -5,6 +5,7 @@ Welcome to the Personal Finance App! This application is designed to help you ma
 ## Table of Contents
 
 - [Features](#features)
+- [Screenshots](#screenshots)
 - [License](#license)
 
 ## Features
