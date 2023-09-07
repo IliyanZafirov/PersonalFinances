@@ -30,22 +30,22 @@ Welcome to the Personal Finance App! This application is designed to help you ma
 - Visualize your savings journey and celebrate milestones.
 
 ## Screenshots
-![Budget](pf_screenshots/main.png)
+<img src="pf_screenshots/main.png" alt="Main" width="300">
 *Screenshot 1: Displaying main activity*
 
-![Budget](pf_screenshots/budget.png)
+<img src="pf_screenshots/budget.png" alt="Budget" width="300">
 *Screenshot 2: Displaying budget activity*
 
-![Budget](pf_screenshots/savings.png)
+<img src="pf_screenshots/savings.png" alt="Savings" width="300">
 *Screenshot 3: Displaying savings activity*
 
-![Budget](pf_screenshots/transactions.png)
+<img src="pf_screenshots/transactions.png" alt="Transactions" width="300">
 *Screenshot 4: Displaying transactions activity*
 
-![Budget](pf_screenshots/future_payments.png)
+<img src="pf_screenshots/future_payments.png" alt="Future Payments" width="300">
 *Screenshot 5: Displaying future payments activity*
 
-![Budget](pf_screenshots/notification.png)
+<img src="pf_screenshots/notification.png" alt="Notification" width="300">
 *Screenshot 6: Displaying notification*
 
 ## License
