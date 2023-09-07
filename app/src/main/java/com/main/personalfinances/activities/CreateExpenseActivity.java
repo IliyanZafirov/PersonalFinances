@@ -29,7 +29,6 @@ import java.util.concurrent.Executors;
 
 public class CreateExpenseActivity extends AppCompatActivity {
 
-    private PersonalFinancesDatabase appDatabase;
     private ExpensesRepository expensesRepository;
     private BudgetRepository budgetRepository;
     private ExecutorService databaseWriteExecutor;
@@ -43,7 +42,7 @@ public class CreateExpenseActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         try {
-            appDatabase = PersonalFinancesDatabase.getDatabase(this);
+            PersonalFinancesDatabase appDatabase = PersonalFinancesDatabase.getDatabase(this);
             ExpenseDao expenseDao = appDatabase.expenseDao();
             expensesRepository = new ExpensesRepository(expenseDao);
             BudgetDao budgetDao = appDatabase.budgetDao();

@@ -16,6 +16,11 @@ import com.main.personalfinances.data.FuturePayment;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Populates the future payments RecyclerView with data about future payments.
+ * It creates and manages individual future payment item views. It's responsible for creating,
+ * binding and recycling views as the user scrolls through the list
+ */
 public class FuturePaymentAdapter extends RecyclerView.Adapter<FuturePaymentAdapter.FuturePaymentViewHolder>{
 
     private List<FuturePayment> futurePaymentList = new ArrayList<>();
@@ -56,6 +61,11 @@ public class FuturePaymentAdapter extends RecyclerView.Adapter<FuturePaymentAdap
         return futurePaymentList.size();
     }
 
+    /**
+     * Holds references to future payment views in a single expense item layout.
+     * It acts as a cache for these views,
+     * so we don't have to call findViewById() to look up the views.
+     */
     class FuturePaymentViewHolder extends RecyclerView.ViewHolder {
 
         EditText editCategory;

@@ -41,38 +41,51 @@ public class FuturePayment {
     public void setId(int id) {
         this.id = id;
     }
+
     public int getId() {
         return id;
     }
+
     public int getBudgetId() {
         return budgetId;
     }
+
     public String getDescription() {
         return description;
     }
+
     public FuturePaymentCategory getCategory() {
         return category;
     }
+
     public LocalDateTime getDueDate() {
         return dueDate;
     }
+
     public void scheduleNotification(Context context) {
         if (dueDate != null && dueDate.isAfter(LocalDateTime.now())) {
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             Intent notificationIntent = new Intent(context, NotificationReceiver.class);
             notificationIntent.putExtra("future_payment_description", description);
 
-            // Convert LocalDate to milliseconds since the Unix epoch
             long triggerMillis = LocalDateTimeToMillis(dueDate);
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(
                     context, id, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
 
-            // Use AlarmManagerCompat to set the alarm
             AlarmManagerCompat.setExactAndAllowWhileIdle(alarmManager, AlarmManager.RTC_WAKEUP, triggerMillis, pendingIntent);
         }
     }
+
+    /**
+     * LocalDateTime doesn't use a specific timezone. We need to get zone first,
+     * then use instant to make it UTC (Coordinated Universal Time),
+     * and then turn it to milliseconds
+     * @param localDateTime date to get milliseconds from
+     * @return Unix timestamp in milliseconds
+     */
     public static long LocalDateTimeToMillis(LocalDateTime localDateTime) {
+        //LocalDateTime doesn't use
         return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 }

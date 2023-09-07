@@ -16,6 +16,11 @@ import com.main.personalfinances.data.Expense;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Populates the expenses RecyclerView with data about expenses.
+ * It creates and manages individual expense item views. It's responsible for creating, binding
+ * and recycling views as the user scrolls through the list
+ */
 public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> {
 
     private List<Expense> expenseList = new ArrayList<>();
@@ -57,6 +62,10 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         return expenseList.size();
     }
 
+    /**
+     * Holds references to expense views in a single expense item layout. It acts as a cache for
+     * these views, so we don't have to call findViewById() to look up the views.
+     */
     class ExpenseViewHolder extends RecyclerView.ViewHolder {
 
         EditText editCategory;

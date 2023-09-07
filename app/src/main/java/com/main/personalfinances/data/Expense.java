@@ -35,23 +35,25 @@ public class Expense {
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public TransactionCategory getCategory() {
         return category;
     }
-    public void setCategory(TransactionCategory category) {
-        this.category = category;
-    }
+
     public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+
     public LocalDate getDateAdded() {
         return dateAdded;
     }
+
     public double getPrice() {
         return price;
     }
+
     public int getBudgetId() {
         return budgetId;
     }

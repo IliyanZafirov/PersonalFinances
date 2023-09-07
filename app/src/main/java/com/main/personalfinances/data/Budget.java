@@ -9,6 +9,7 @@ import androidx.room.PrimaryKey;
  */
 @Entity(tableName = "budget")
 public class Budget {
+
     @PrimaryKey(autoGenerate = true)
     private int id;
     private double startingAmount;
@@ -22,27 +23,32 @@ public class Budget {
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public double getStartingAmount() {
         return startingAmount;
     }
+
     public void setStartingAmount(double startingAmount) {
         this.startingAmount = startingAmount;
     }
+
     public double getCurrentAmount() {
         return currentAmount;
     }
 
     /**
-     * Deducts money from itself on payment or when sparing savings
+     * Deducts money from budget on payment or when sparing savings
      */
     public void pay(double amountToPay) {
         if(amountToPay > 0 && amountToPay <= currentAmount) {
             currentAmount = currentAmount - amountToPay;
         }
     }
+
     public void setCurrentAmount(double currentAmount) {
         this.currentAmount = currentAmount;
     }

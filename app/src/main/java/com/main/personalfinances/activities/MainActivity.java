@@ -36,7 +36,6 @@ import java.util.concurrent.Executors;
 public class MainActivity extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE = 123;
-    private PersonalFinancesDatabase appDatabase;
     private AlertDialog nameUpdateDialog;
     private AlertDialog nameInsertDialog;
     private BudgetRepository budgetRepository;
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         try {
-            appDatabase = PersonalFinancesDatabase.getDatabase(this);
+            PersonalFinancesDatabase appDatabase = PersonalFinancesDatabase.getDatabase(this);
             BudgetDao budgetDao = appDatabase.budgetDao();
             budgetRepository = new BudgetRepository(budgetDao);
             SavingsDao savingsDao = appDatabase.savingsDao();

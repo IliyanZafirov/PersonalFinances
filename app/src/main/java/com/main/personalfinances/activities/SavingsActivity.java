@@ -29,20 +29,11 @@ import java.util.concurrent.Executors;
 
 public class SavingsActivity extends AppCompatActivity {
 
-    private PersonalFinancesDatabase appDatabase;
     private SavingsRepository savingsRepository;
     private BudgetRepository budgetRepository;
-
-    private SavingsDao savingsDao;
-    private BudgetDao budgetDao;
-
-    private AlertDialog goalUpdateDialog;
-    private AlertDialog addMoneyDialog;
     private ExecutorService databaseWriteExecutor;
     private TextView savings_goal_text_view;
     private TextView saved_amount_text_view;
-
-    private Button add_money_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +44,10 @@ public class SavingsActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         try {
-            appDatabase = PersonalFinancesDatabase.getDatabase(this);
-            savingsDao = appDatabase.savingsDao();
+            PersonalFinancesDatabase appDatabase = PersonalFinancesDatabase.getDatabase(this);
+            SavingsDao savingsDao = appDatabase.savingsDao();
             savingsRepository = new SavingsRepository(savingsDao);
-            budgetDao = appDatabase.budgetDao();
+            BudgetDao budgetDao = appDatabase.budgetDao();
             budgetRepository = new BudgetRepository(budgetDao);
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,7 +57,7 @@ public class SavingsActivity extends AppCompatActivity {
 
         savings_goal_text_view = findViewById(R.id.savings_goal);
         saved_amount_text_view = findViewById(R.id.saved_amount);
-        add_money_button = findViewById(R.id.add_money_button);
+        Button add_money_button = findViewById(R.id.add_money_button);
         ImageButton setSavingsGoalButton = findViewById(R.id.set_savings_goal_button);
 
 
@@ -124,7 +115,7 @@ public class SavingsActivity extends AppCompatActivity {
 
         builder.setNegativeButton("Cancel", null);
 
-        goalUpdateDialog = builder.create();
+        AlertDialog goalUpdateDialog = builder.create();
         goalUpdateDialog.show();
     }
 
@@ -160,10 +151,9 @@ public class SavingsActivity extends AppCompatActivity {
                             savingsRepository.updateSavings(savings);
                             saved_amount_text_view.setText("Saved amount: " + savings.getCurrentAmount());
                         } else {
-                            runOnUiThread(()-> {
-                                Toast.makeText(SavingsActivity.this, "Amount bigger than current budget",
-                                        Toast.LENGTH_SHORT).show();
-                            });
+                            runOnUiThread(()-> Toast.makeText(SavingsActivity.this,
+                                    "Amount bigger than current budget",
+                                    Toast.LENGTH_SHORT).show());
                         }
 
                     });
@@ -175,7 +165,7 @@ public class SavingsActivity extends AppCompatActivity {
 
         builder.setNegativeButton("Cancel", null);
 
-        addMoneyDialog = builder.create();
+        AlertDialog addMoneyDialog = builder.create();
         addMoneyDialog.show();
     }
 
