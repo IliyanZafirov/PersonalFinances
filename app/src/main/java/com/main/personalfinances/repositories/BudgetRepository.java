@@ -11,11 +11,16 @@ public class BudgetRepository {
     public BudgetRepository(BudgetDao budgetDao) {
         this.budgetDao = budgetDao;
     }
+
     public long insertBudget(Budget budget) {
         return budgetDao.insertBudget(budget);
     }
+
     public void updateBudget(Budget budget) {
         budgetDao.updateBudget(budget);
     }
-    public Budget getBudget() { return budgetDao.getBudget(); }
+
+    public Budget getBudget() {
+        return budgetDao.getBudget();
+    }
 }

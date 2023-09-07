@@ -30,7 +30,6 @@ public class FuturePaymentActivity extends AppCompatActivity {
     private FuturePaymentRepository futurePaymentRepository;
     private ExecutorService databaseWriteExecutor;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

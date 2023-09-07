@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
             if (existingBudget == null) {
                 Budget newBudget = new Budget(0);
                 long budgetId = budgetRepository.insertBudget(newBudget);
-
                 Savings savings = new Savings(budgetId, 0);
                 long savingsId = savingsRepository.insertSavings(savings);
             }
@@ -111,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
-
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -124,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
                 greetingTextView.setText("Hello, " + username);
             }
         });
-
         builder.setNegativeButton("Cancel", null);
 
         nameUpdateDialog = builder.create();
@@ -138,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
-
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -168,6 +164,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Double-click to exit the application instead of returning to previous activity
+     */
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -178,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
             this.doubleBackToExitPressedOnce = true;
             Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
 
-            // Reset the flag after a short delay (e.g., 2 seconds)
+            // Reset the flag after a short delay
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

@@ -60,15 +60,14 @@ public class SavingsActivity extends AppCompatActivity {
         Button add_money_button = findViewById(R.id.add_money_button);
         ImageButton setSavingsGoalButton = findViewById(R.id.set_savings_goal_button);
 
-
         databaseWriteExecutor.execute(() -> {
-           Savings savings = savingsRepository.getSavings();
-           if(savings != null) {
-               runOnUiThread(() -> {
-                   savings_goal_text_view.setText("Savings goal: " + savings.getTargetAmount());
-                   saved_amount_text_view.setText("Saved amount: " + savings.getCurrentAmount());
-               });
-           }
+            Savings savings = savingsRepository.getSavings();
+            if (savings != null) {
+                runOnUiThread(() -> {
+                    savings_goal_text_view.setText("Savings goal: " + savings.getTargetAmount());
+                    saved_amount_text_view.setText("Saved amount: " + savings.getCurrentAmount());
+                });
+            }
         });
 
         setSavingsGoalButton.setOnClickListener(new View.OnClickListener() {
@@ -97,8 +96,8 @@ public class SavingsActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String newGoal = input.getText().toString();
-                if(isValidNumber(newGoal)) {
-                    databaseWriteExecutor.execute(()-> {
+                if (isValidNumber(newGoal)) {
+                    databaseWriteExecutor.execute(() -> {
                         Savings savings = savingsRepository.getSavings();
                         savings.setTargetAmount(Double.parseDouble(newGoal));
                         savings.setCurrentAmount(0);
@@ -112,7 +111,6 @@ public class SavingsActivity extends AppCompatActivity {
                 }
             }
         });
-
         builder.setNegativeButton("Cancel", null);
 
         AlertDialog goalUpdateDialog = builder.create();
@@ -140,18 +138,18 @@ public class SavingsActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String moneyToAdd = input.getText().toString();
-                if(isValidNumber(moneyToAdd)) {
-                    databaseWriteExecutor.execute(()-> {
+                if (isValidNumber(moneyToAdd)) {
+                    databaseWriteExecutor.execute(() -> {
                         Budget budget = budgetRepository.getBudget();
                         Savings savings = savingsRepository.getSavings();
-                        if(budget.getCurrentAmount() > Double.parseDouble(moneyToAdd)) {
+                        if (budget.getCurrentAmount() > Double.parseDouble(moneyToAdd)) {
                             savings.addMoney(Double.parseDouble(moneyToAdd));
                             budget.pay(Double.parseDouble(moneyToAdd));
                             budgetRepository.updateBudget(budget);
                             savingsRepository.updateSavings(savings);
                             saved_amount_text_view.setText("Saved amount: " + savings.getCurrentAmount());
                         } else {
-                            runOnUiThread(()-> Toast.makeText(SavingsActivity.this,
+                            runOnUiThread(() -> Toast.makeText(SavingsActivity.this,
                                     "Amount bigger than current budget",
                                     Toast.LENGTH_SHORT).show());
                         }
@@ -162,7 +160,6 @@ public class SavingsActivity extends AppCompatActivity {
                 }
             }
         });
-
         builder.setNegativeButton("Cancel", null);
 
         AlertDialog addMoneyDialog = builder.create();
@@ -179,7 +176,7 @@ public class SavingsActivity extends AppCompatActivity {
         try {
             double number = Double.parseDouble(numberString);
             return number > 0;
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             e.printStackTrace();
             return false;
         }

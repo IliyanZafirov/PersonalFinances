@@ -23,8 +23,8 @@ public class Expense {
     private final LocalDate dateAdded;
     private final double price;
 
-    public Expense(int budgetId, TransactionCategory category,String description,
-                   LocalDate dateAdded,double price) {
+    public Expense(int budgetId, TransactionCategory category, String description,
+                   LocalDate dateAdded, double price) {
         this.budgetId = budgetId;
         this.category = category;
         this.description = description;
@@ -44,7 +44,9 @@ public class Expense {
         return category;
     }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
     public LocalDate getDateAdded() {
         return dateAdded;

@@ -20,29 +20,37 @@ public class Savings {
         this.targetAmount = targetAmount;
 
     }
+
     public void addMoney(double moneyToAdd) {
-        if(moneyToAdd > 0 ) {
+        if (moneyToAdd > 0) {
             currentAmount = currentAmount + moneyToAdd;
         }
     }
+
     public double getTargetAmount() {
         return targetAmount;
     }
+
     public void setTargetAmount(double targetAmount) {
         this.targetAmount = targetAmount;
     }
+
     public double getCurrentAmount() {
         return currentAmount;
     }
+
     public void setCurrentAmount(double currentAmount) {
         this.currentAmount = currentAmount;
     }
+
     public long getBudgetId() {
         return budgetId;
     }
+
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }

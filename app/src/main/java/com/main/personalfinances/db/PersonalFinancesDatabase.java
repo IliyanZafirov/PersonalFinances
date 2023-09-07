@@ -25,8 +25,11 @@ import com.main.personalfinances.daos.ExpenseDao;
 public abstract class PersonalFinancesDatabase extends RoomDatabase {
 
     public abstract BudgetDao budgetDao();
+
     public abstract ExpenseDao expenseDao();
+
     public abstract SavingsDao savingsDao();
+
     public abstract FuturePaymentDao futurePaymentDao();
 
     // volatile ensures that it can be used by multiple threads
@@ -41,7 +44,7 @@ public abstract class PersonalFinancesDatabase extends RoomDatabase {
                 // double-check to ensure another thread hasn't initialized a database
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            PersonalFinancesDatabase.class, "personalFinance_database")
+                                    PersonalFinancesDatabase.class, "personalFinance_database")
                             .fallbackToDestructiveMigration()
                             .build();
                 }

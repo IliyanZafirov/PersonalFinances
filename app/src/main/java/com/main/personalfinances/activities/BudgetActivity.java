@@ -105,7 +105,6 @@ public class BudgetActivity extends AppCompatActivity {
                 }
             }
         });
-
         builder.setNegativeButton("Cancel", null);
 
         AlertDialog updateBudgetDialog = builder.create();

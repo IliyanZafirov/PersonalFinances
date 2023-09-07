@@ -47,7 +47,6 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.future_payments_form_toolbar);
         setSupportActionBar(myToolbar);
 
-
         try {
             appDatabase = PersonalFinancesDatabase.getDatabase(this);
         } catch (Exception e) {
@@ -106,8 +105,7 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
 
         String dueDateText = selectedDateTimeText.getText().toString();
 
-        final String description;
-        description = editDescription.getText().toString();
+        String description = editDescription.getText().toString();
 
         if (!dueDateText.isEmpty()) {
             try {

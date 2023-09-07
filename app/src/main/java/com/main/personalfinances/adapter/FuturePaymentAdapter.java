@@ -21,7 +21,7 @@ import java.util.List;
  * It creates and manages individual future payment item views. It's responsible for creating,
  * binding and recycling views as the user scrolls through the list
  */
-public class FuturePaymentAdapter extends RecyclerView.Adapter<FuturePaymentAdapter.FuturePaymentViewHolder>{
+public class FuturePaymentAdapter extends RecyclerView.Adapter<FuturePaymentAdapter.FuturePaymentViewHolder> {
 
     private final List<FuturePayment> futurePaymentList = new ArrayList<>();
     private final LiveData<List<FuturePayment>> liveDataFuturePaymentList;
