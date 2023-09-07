@@ -34,4 +34,4 @@ Welcome to the Personal Finance App! This application is designed to help you ma
 
 This project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute it as per the terms of the license.
 
-Thank you for choosing the Personal Finance App to take control of your financial journey! If you have any questions or feedback, please don't hesitate to reach out to our support team. Happy budgeting!
+Thank you for choosing the Personal Finance App to take control of your financial journey! If you have any questions or feedback, please don't hesitate to reach out to me. Happy budgeting!
