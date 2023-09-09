@@ -1,4 +1,4 @@
-package com.main.personalfinances.activities;
+package com.main.personalfinances.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.personalfinances.R;
 import com.main.personalfinances.adapter.ExpenseAdapter;
-import com.main.personalfinances.daos.ExpenseDao;
-import com.main.personalfinances.data.Expense;
+import com.main.personalfinances.dao.ExpenseDao;
+import com.main.personalfinances.model.Expense;
 import com.main.personalfinances.repositories.ExpensesRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 

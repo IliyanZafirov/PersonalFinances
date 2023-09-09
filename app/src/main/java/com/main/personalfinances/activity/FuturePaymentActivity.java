@@ -1,4 +1,4 @@
-package com.main.personalfinances.activities;
+package com.main.personalfinances.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.personalfinances.R;
 import com.main.personalfinances.adapter.FuturePaymentAdapter;
-import com.main.personalfinances.daos.FuturePaymentDao;
-import com.main.personalfinances.data.FuturePayment;
+import com.main.personalfinances.dao.FuturePaymentDao;
+import com.main.personalfinances.model.FuturePayment;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 import com.main.personalfinances.repositories.FuturePaymentRepository;
 

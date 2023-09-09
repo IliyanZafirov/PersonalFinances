@@ -2,8 +2,8 @@ package com.main.personalfinances.repositories;
 
 import androidx.lifecycle.LiveData;
 
-import com.main.personalfinances.daos.ExpenseDao;
-import com.main.personalfinances.data.Expense;
+import com.main.personalfinances.dao.ExpenseDao;
+import com.main.personalfinances.model.Expense;
 
 import java.util.List;
 

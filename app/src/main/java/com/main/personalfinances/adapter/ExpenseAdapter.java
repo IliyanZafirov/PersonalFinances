@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.personalfinances.R;
-import com.main.personalfinances.data.Expense;
+import com.main.personalfinances.model.Expense;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,11 @@
-package com.main.personalfinances.daos;
+package com.main.personalfinances.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.main.personalfinances.data.Expense;
+import com.main.personalfinances.model.Expense;
 
 import java.util.List;
 

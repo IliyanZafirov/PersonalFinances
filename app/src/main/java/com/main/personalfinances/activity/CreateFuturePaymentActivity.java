@@ -1,4 +1,4 @@
-package com.main.personalfinances.activities;
+package com.main.personalfinances.activity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -18,8 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.main.personalfinances.R;
-import com.main.personalfinances.daos.FuturePaymentDao;
-import com.main.personalfinances.data.FuturePayment;
+import com.main.personalfinances.dao.FuturePaymentDao;
+import com.main.personalfinances.model.FuturePayment;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 import com.main.personalfinances.enums.FuturePaymentCategory;
 import com.main.personalfinances.repositories.FuturePaymentRepository;

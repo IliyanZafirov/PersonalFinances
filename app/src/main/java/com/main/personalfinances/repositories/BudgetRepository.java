@@ -1,8 +1,8 @@
 package com.main.personalfinances.repositories;
 
 
-import com.main.personalfinances.daos.BudgetDao;
-import com.main.personalfinances.data.Budget;
+import com.main.personalfinances.dao.BudgetDao;
+import com.main.personalfinances.model.Budget;
 
 public class BudgetRepository {
 

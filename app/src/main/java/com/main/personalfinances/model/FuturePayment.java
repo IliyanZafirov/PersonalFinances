@@ -1,4 +1,4 @@
-package com.main.personalfinances.data;
+package com.main.personalfinances.model;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;

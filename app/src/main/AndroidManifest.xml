@@ -15,19 +15,19 @@
 
         tools:targetApi="31">
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.BudgetActivity"/>
-        <activity android:name=".activities.SavingsActivity"/>
-        <activity android:name=".activities.ExpensesActivity" />
-        <activity android:name=".activities.FuturePaymentActivity" />
-        <activity android:name=".activities.CreateExpenseActivity"/>
-        <activity android:name=".activities.CreateFuturePaymentActivity"/>
+        <activity android:name=".activity.BudgetActivity"/>
+        <activity android:name=".activity.SavingsActivity"/>
+        <activity android:name=".activity.ExpensesActivity" />
+        <activity android:name=".activity.FuturePaymentActivity" />
+        <activity android:name=".activity.CreateExpenseActivity"/>
+        <activity android:name=".activity.CreateFuturePaymentActivity"/>
         <receiver android:name=".notification.NotificationReceiver" />
     </application>
 </manifest>

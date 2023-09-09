@@ -1,4 +1,4 @@
-package com.main.personalfinances.daos;
+package com.main.personalfinances.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -6,7 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.main.personalfinances.data.FuturePayment;
+import com.main.personalfinances.model.FuturePayment;
 
 import java.util.List;
 

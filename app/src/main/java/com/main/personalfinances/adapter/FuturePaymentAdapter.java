@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.main.personalfinances.R;
-import com.main.personalfinances.data.FuturePayment;
+import com.main.personalfinances.model.FuturePayment;
 
 import java.util.ArrayList;
 import java.util.List;

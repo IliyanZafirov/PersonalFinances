@@ -1,4 +1,4 @@
-package com.main.personalfinances.activities;
+package com.main.personalfinances.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,11 +14,11 @@ import androidx.appcompat.widget.Toolbar;
 
 
 import com.main.personalfinances.R;
-import com.main.personalfinances.daos.BudgetDao;
-import com.main.personalfinances.daos.ExpenseDao;
-import com.main.personalfinances.data.Budget;
+import com.main.personalfinances.dao.BudgetDao;
+import com.main.personalfinances.dao.ExpenseDao;
+import com.main.personalfinances.model.Budget;
 import com.main.personalfinances.repositories.BudgetRepository;
-import com.main.personalfinances.data.Expense;
+import com.main.personalfinances.model.Expense;
 import com.main.personalfinances.repositories.ExpensesRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 import com.main.personalfinances.enums.TransactionCategory;

@@ -2,8 +2,8 @@ package com.main.personalfinances.repositories;
 
 import androidx.lifecycle.LiveData;
 
-import com.main.personalfinances.daos.FuturePaymentDao;
-import com.main.personalfinances.data.FuturePayment;
+import com.main.personalfinances.dao.FuturePaymentDao;
+import com.main.personalfinances.model.FuturePayment;
 
 import java.util.List;
 

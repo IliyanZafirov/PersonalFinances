@@ -1,4 +1,4 @@
-package com.main.personalfinances.activities;
+package com.main.personalfinances.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,11 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.main.personalfinances.R;
-import com.main.personalfinances.daos.BudgetDao;
-import com.main.personalfinances.daos.SavingsDao;
-import com.main.personalfinances.data.Budget;
+import com.main.personalfinances.dao.BudgetDao;
+import com.main.personalfinances.dao.SavingsDao;
+import com.main.personalfinances.model.Budget;
 import com.main.personalfinances.repositories.BudgetRepository;
-import com.main.personalfinances.data.Savings;
+import com.main.personalfinances.model.Savings;
 import com.main.personalfinances.repositories.SavingsRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
 

@@ -1,4 +1,4 @@
-package com.main.personalfinances.data;
+package com.main.personalfinances.model;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

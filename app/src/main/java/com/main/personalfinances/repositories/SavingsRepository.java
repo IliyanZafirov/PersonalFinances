@@ -1,7 +1,7 @@
 package com.main.personalfinances.repositories;
 
-import com.main.personalfinances.daos.SavingsDao;
-import com.main.personalfinances.data.Savings;
+import com.main.personalfinances.dao.SavingsDao;
+import com.main.personalfinances.model.Savings;
 
 public class SavingsRepository {
 

@@ -10,14 +10,14 @@ import androidx.room.TypeConverters;
 
 import com.main.personalfinances.converter.LocalDateConverter;
 import com.main.personalfinances.converter.LocalDateTimeConverter;
-import com.main.personalfinances.daos.FuturePaymentDao;
-import com.main.personalfinances.data.Budget;
-import com.main.personalfinances.daos.BudgetDao;
-import com.main.personalfinances.data.FuturePayment;
-import com.main.personalfinances.data.Savings;
-import com.main.personalfinances.daos.SavingsDao;
-import com.main.personalfinances.data.Expense;
-import com.main.personalfinances.daos.ExpenseDao;
+import com.main.personalfinances.dao.FuturePaymentDao;
+import com.main.personalfinances.model.Budget;
+import com.main.personalfinances.dao.BudgetDao;
+import com.main.personalfinances.model.FuturePayment;
+import com.main.personalfinances.model.Savings;
+import com.main.personalfinances.dao.SavingsDao;
+import com.main.personalfinances.model.Expense;
+import com.main.personalfinances.dao.ExpenseDao;
 
 @Database(entities = {Budget.class, Expense.class, Savings.class, FuturePayment.class},
         version = 111, exportSchema = false)
