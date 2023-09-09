@@ -15,7 +15,7 @@
         android:contentDescription="@string/choose_category"
         android:hint="@string/category_string"
         android:minHeight="48dp"
-        android:textColor="@color/yellow_canary_variant" />
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/editPrice"
@@ -24,7 +24,7 @@
         android:hint="@string/price_string"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
-        android:textColor="@color/yellow_canary_variant" />
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/editDescription"
@@ -33,7 +33,7 @@
         android:hint="@string/description_string"
         android:inputType="text"
         android:minHeight="48dp"
-        android:textColor="@color/yellow_canary_variant" />
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/btnSaveExpense"
