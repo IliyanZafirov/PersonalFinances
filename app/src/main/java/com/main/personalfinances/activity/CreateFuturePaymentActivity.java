@@ -34,6 +34,11 @@ import java.util.concurrent.Executors;
 
 public class CreateFuturePaymentActivity extends AppCompatActivity {
 
+    private static final String DATE_CAN_NOT_BE_IN_THE_PAST_STRING = "Date can't be in the past";
+    private static final String INVALID_DATE_FORMAT_STRING =
+            "Invalid date format. Please use yyyy-MM-dd HH:mm";
+    private static final String EMPTY_DUE_DATE_STRING = "Due date is empty. Please select a date and time.";
+    private static final String DATE_FORMAT_STRING = "yyyy-MM-dd HH:mm";
     private PersonalFinancesDatabase appDatabase;
     private FuturePaymentRepository futurePaymentRepository;
     private ExecutorService databaseWriteExecutor;
@@ -108,7 +113,7 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
 
         if (!dueDateText.isEmpty()) {
             try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT_STRING);
                 LocalDateTime dueDate = LocalDateTime.parse(dueDateText, formatter);
                 if (!LocalDateTime.now().isAfter(dueDate)) {
                     databaseWriteExecutor.execute(() -> {
@@ -123,13 +128,13 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
                         });
                     });
                 } else {
-                    showToast("Date can't be in the past");
+                    showToast(DATE_CAN_NOT_BE_IN_THE_PAST_STRING);
                 }
             } catch (DateTimeParseException e) {
-                showToast("Invalid date format. Please use yyyy-MM-dd HH:mm");
+                showToast(INVALID_DATE_FORMAT_STRING);
             }
         } else {
-            showToast("Due date is empty. Please select a date and time.");
+            showToast(EMPTY_DUE_DATE_STRING);
         }
     }
 
@@ -143,7 +148,7 @@ public class CreateFuturePaymentActivity extends AppCompatActivity {
                         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         calendar.set(Calendar.MINUTE, minute);
 
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_STRING);
                         String selectedDateTime = sdf.format(calendar.getTime());
                         selectedDateTimeText.setText(selectedDateTime);
                     }

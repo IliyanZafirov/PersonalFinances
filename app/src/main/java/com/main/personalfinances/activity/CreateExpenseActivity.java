@@ -29,6 +29,9 @@ import java.util.concurrent.Executors;
 
 public class CreateExpenseActivity extends AppCompatActivity {
 
+    private static final String INVALID_EXPENSE_STRING = "Invalid expense";
+    private static final String PRICE_BIGGER_THAN_CURRENT_BUDGET_AMOUNT_STRING =
+            "Price is bigger than current budget amount";
     private ExpensesRepository expensesRepository;
     private BudgetRepository budgetRepository;
     private ExecutorService databaseWriteExecutor;
@@ -98,11 +101,11 @@ public class CreateExpenseActivity extends AppCompatActivity {
 
                     });
                 } else {
-                    runOnUiThread(() -> showToast("Price is bigger than current budget amount"));
+                    runOnUiThread(() -> showToast(PRICE_BIGGER_THAN_CURRENT_BUDGET_AMOUNT_STRING));
                 }
             });
         } catch (NumberFormatException e) {
-            runOnUiThread(() -> showToast("Invalid expense"));
+            runOnUiThread(() -> showToast(INVALID_EXPENSE_STRING));
         }
     }
 

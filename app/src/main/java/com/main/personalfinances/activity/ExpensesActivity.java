@@ -26,6 +26,7 @@ import java.util.Locale;
 
 public class ExpensesActivity extends AppCompatActivity {
 
+    private static final String SPENT_LAST_30_DAYS_STRING = "Spent last 30 days: %.2f";
     private ExpensesRepository expensesRepository;
 
     @Override
@@ -56,7 +57,7 @@ public class ExpensesActivity extends AppCompatActivity {
             public void onChanged(List<Expense> expenseList) {
                 double totalAmountSpent = calculateTotalAmountSpentInLast30Days(expenseList);
                 amountSpendLast30DaysTextView.setText(
-                        String.format(Locale.US, "Spent last 30 days: %.2f", totalAmountSpent));
+                        String.format(Locale.US, SPENT_LAST_30_DAYS_STRING, totalAmountSpent));
             }
         });
     }

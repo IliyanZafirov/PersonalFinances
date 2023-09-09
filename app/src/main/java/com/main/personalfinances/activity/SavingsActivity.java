@@ -29,6 +29,14 @@ import java.util.concurrent.Executors;
 
 public class SavingsActivity extends AppCompatActivity {
 
+    private static final String OK_STRING = "OK";
+    private static final String CANCEL_STRING = "Cancel";
+    private static final String INVALID_AMOUNT_ENTERED_BY_USER_STRING = "You didn't enter a valid amount";
+    private static final String SAVINGS_GOAL_STRING = "Savings goal: ";
+    private static final String SAVED_AMOUNT_STRING = "Saved amount: ";
+    private static final String ADD_MONEY_STRING = "Add money:";
+    private static final String UPDATE_SAVINGS_GOAL_STRING = "Update savings goal:";
+    private static final String AMOUNT_BIGGER_THAN_CURRENT_BUDGET_STRING = "Amount bigger than current budget";
     private SavingsRepository savingsRepository;
     private BudgetRepository budgetRepository;
     private ExecutorService databaseWriteExecutor;
@@ -80,8 +88,8 @@ public class SavingsActivity extends AppCompatActivity {
             Savings savings = savingsRepository.getSavings();
             if (savings != null) {
                 runOnUiThread(() -> {
-                    savings_goal_text_view.setText("Savings goal: " + savings.getTargetAmount());
-                    saved_amount_text_view.setText("Saved amount: " + savings.getCurrentAmount());
+                    savings_goal_text_view.setText(SAVINGS_GOAL_STRING + savings.getTargetAmount());
+                    saved_amount_text_view.setText(SAVED_AMOUNT_STRING + savings.getCurrentAmount());
                 });
             }
         });
@@ -89,13 +97,13 @@ public class SavingsActivity extends AppCompatActivity {
 
     private void setNewGoal() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Update savings goal:");
+        builder.setMessage(UPDATE_SAVINGS_GOAL_STRING);
 
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(OK_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String newGoal = input.getText().toString();
@@ -105,16 +113,17 @@ public class SavingsActivity extends AppCompatActivity {
                         savings.setTargetAmount(Double.parseDouble(newGoal));
                         savings.setCurrentAmount(0);
                         savingsRepository.updateSavings(savings);
-                        savings_goal_text_view.setText("Savings goal: " + savings.getTargetAmount());
-                        saved_amount_text_view.setText("Saved amount: " + savings.getCurrentAmount());
+                        savings_goal_text_view.setText(SAVINGS_GOAL_STRING + savings.getTargetAmount());
+                        saved_amount_text_view.setText(SAVED_AMOUNT_STRING + savings.getCurrentAmount());
 
                     });
                 } else {
-                    Toast.makeText(SavingsActivity.this, "You didn't enter a valid amount", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SavingsActivity.this, INVALID_AMOUNT_ENTERED_BY_USER_STRING,
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        builder.setNegativeButton("Cancel", null);
+        builder.setNegativeButton(CANCEL_STRING, null);
 
         AlertDialog goalUpdateDialog = builder.create();
         goalUpdateDialog.show();
@@ -131,13 +140,13 @@ public class SavingsActivity extends AppCompatActivity {
 
     public void addSavings(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Add money:");
+        builder.setMessage(ADD_MONEY_STRING);
 
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(OK_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String moneyToAdd = input.getText().toString();
@@ -150,20 +159,21 @@ public class SavingsActivity extends AppCompatActivity {
                             budget.pay(Double.parseDouble(moneyToAdd));
                             budgetRepository.updateBudget(budget);
                             savingsRepository.updateSavings(savings);
-                            saved_amount_text_view.setText("Saved amount: " + savings.getCurrentAmount());
+                            saved_amount_text_view.setText(SAVED_AMOUNT_STRING + savings.getCurrentAmount());
                         } else {
                             runOnUiThread(() -> Toast.makeText(SavingsActivity.this,
-                                    "Amount bigger than current budget",
+                                    AMOUNT_BIGGER_THAN_CURRENT_BUDGET_STRING,
                                     Toast.LENGTH_SHORT).show());
                         }
 
                     });
                 } else {
-                    Toast.makeText(SavingsActivity.this, "You didn't enter a valid amount", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SavingsActivity.this, INVALID_AMOUNT_ENTERED_BY_USER_STRING,
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        builder.setNegativeButton("Cancel", null);
+        builder.setNegativeButton(CANCEL_STRING, null);
 
         AlertDialog addMoneyDialog = builder.create();
         addMoneyDialog.show();

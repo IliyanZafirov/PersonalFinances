@@ -36,6 +36,15 @@ import java.util.concurrent.Executors;
 public class MainActivity extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE = 123;
+    private static final String OK_STRING = "OK";
+    private static final String PRESS_BACK_AGAIN_TO_EXIT_STRING = "Press back again to exit";
+    private static final String HELLO_STRING = "Hello, ";
+    private static final String ENTER_YOUR_NAME_STRING = "Enter your name:";
+    private static final String CANCEL_STRING = "Cancel";
+    private static final String UPDATE_YOUR_NAME_STRING = "Update your name:";
+    private static final String USER_PREFERENCES_STRING = "user_preferences";
+    private static final String USER_PREFERENCES_KEY_STRING_ONE = "1";
+    private static final String USER_PREFERENCES_VALUE_STRING_USER = "User";
     private AlertDialog nameUpdateDialog;
     private AlertDialog nameInsertDialog;
     private BudgetRepository budgetRepository;
@@ -68,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         databaseWriteExecutor = Executors.newSingleThreadExecutor();
 
-        userSharedPref = getSharedPreferences("user_preferences", Context.MODE_PRIVATE);
+        userSharedPref = getSharedPreferences(USER_PREFERENCES_STRING, Context.MODE_PRIVATE);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -104,24 +113,25 @@ public class MainActivity extends AppCompatActivity {
 
     private void promptUserForNameUpdate() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Update your name:");
+        builder.setMessage(UPDATE_YOUR_NAME_STRING);
 
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(OK_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String enteredName = input.getText().toString();
                 SharedPreferences.Editor editor = userSharedPref.edit();
-                editor.putString("1", enteredName);
+                editor.putString(USER_PREFERENCES_KEY_STRING_ONE, enteredName);
                 editor.apply();
 
-                String username = userSharedPref.getString("1", "User");
-                greetingTextView.setText("Hello, " + username);
+                String username = userSharedPref.getString(USER_PREFERENCES_KEY_STRING_ONE,
+                        USER_PREFERENCES_VALUE_STRING_USER);
+                greetingTextView.setText(HELLO_STRING + username);
             }
         });
-        builder.setNegativeButton("Cancel", null);
+        builder.setNegativeButton(CANCEL_STRING, null);
 
         nameUpdateDialog = builder.create();
         nameUpdateDialog.show();
@@ -129,24 +139,25 @@ public class MainActivity extends AppCompatActivity {
 
     private void promptUserForName() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Enter your name:");
+        builder.setMessage(ENTER_YOUR_NAME_STRING);
 
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(OK_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 String enteredName = input.getText().toString();
 
                 SharedPreferences.Editor editor = userSharedPref.edit();
-                editor.putString("1", enteredName);
+                editor.putString(USER_PREFERENCES_KEY_STRING_ONE, enteredName);
                 editor.apply();
 
-                String username = userSharedPref.getString("1", "User");
+                String username = userSharedPref.getString(USER_PREFERENCES_KEY_STRING_ONE,
+                        USER_PREFERENCES_VALUE_STRING_USER);
 
-                greetingTextView.setText("Hello, " + username);
+                greetingTextView.setText(HELLO_STRING + username);
             }
         }).setCancelable(false);
 
@@ -155,11 +166,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void userAuthenticate() {
-        if (userSharedPref.getString("1", "User").equals("User")) {
+        if (userSharedPref.getString(USER_PREFERENCES_KEY_STRING_ONE,
+                USER_PREFERENCES_VALUE_STRING_USER).equals(USER_PREFERENCES_VALUE_STRING_USER)) {
             promptUserForName();
         } else {
-            String username = userSharedPref.getString("1", "User");
-            greetingTextView.setText("Hello, " + username);
+            String username = userSharedPref.getString(USER_PREFERENCES_KEY_STRING_ONE,
+                    USER_PREFERENCES_VALUE_STRING_USER);
+            greetingTextView.setText(HELLO_STRING + username);
         }
     }
 
@@ -174,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         } else {
             this.doubleBackToExitPressedOnce = true;
-            Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, PRESS_BACK_AGAIN_TO_EXIT_STRING, Toast.LENGTH_SHORT).show();
 
             // Reset the flag after a short delay
             new Handler().postDelayed(new Runnable() {

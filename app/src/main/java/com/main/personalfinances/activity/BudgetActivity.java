@@ -27,6 +27,12 @@ import java.util.concurrent.Executors;
 
 public class BudgetActivity extends AppCompatActivity {
 
+    private static final String OK_STRING = "OK";
+    private static final String MONTHLY_BUDGET_STRING = "Monthly budget: ";
+    private static final String CURRENT_AMOUNT_STRING = "Current amount: ";
+    private static final String UPDATE_BUDGET_STRING = "Update budget (IT IS GOING TO DELETE ALL EXPENSES IF PRESENT):";
+    private static final String INVALID_AMOUNT_STRING = "You didn't enter a valid amount";
+    private static final String CANCEL_STRING = "Cancel";
     private PersonalFinancesDatabase appDatabase;
     private BudgetRepository budgetRepository;
     private ExpensesRepository expensesRepository;
@@ -59,8 +65,8 @@ public class BudgetActivity extends AppCompatActivity {
             Budget budget = budgetRepository.getBudget();
             if(budget != null) {
                 runOnUiThread(() -> {
-                    monthlyBudget.setText("Monthly budget: " + budget.getStartingAmount());
-                    currentBudget.setText("Current amount: " + budget.getCurrentAmount());
+                    monthlyBudget.setText(MONTHLY_BUDGET_STRING + budget.getStartingAmount());
+                    currentBudget.setText(CURRENT_AMOUNT_STRING + budget.getCurrentAmount());
                 });
             }
         });
@@ -78,13 +84,13 @@ public class BudgetActivity extends AppCompatActivity {
 
     private void updateBudget(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Update budget (IT IS GOING TO DELETE ALL EXPENSES IF PRESENT):");
+        builder.setMessage(UPDATE_BUDGET_STRING);
 
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(OK_STRING, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String newBudget = input.getText().toString();
@@ -97,15 +103,16 @@ public class BudgetActivity extends AppCompatActivity {
                         if (expensesRepository.getAllExpenses() != null) {
                             expensesRepository.deleteAllExpenses();
                         }
-                        monthlyBudget.setText("Monthly Budget: " + budget.getStartingAmount());
-                        currentBudget.setText("Current Amount: " + budget.getCurrentAmount());
+                        monthlyBudget.setText(MONTHLY_BUDGET_STRING + budget.getStartingAmount());
+                        currentBudget.setText(CURRENT_AMOUNT_STRING + budget.getCurrentAmount());
                     });
                 } else {
-                    Toast.makeText(BudgetActivity.this, "You didn't enter a valid amount", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BudgetActivity.this,
+                            INVALID_AMOUNT_STRING, Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        builder.setNegativeButton("Cancel", null);
+        builder.setNegativeButton(CANCEL_STRING, null);
 
         AlertDialog updateBudgetDialog = builder.create();
         updateBudgetDialog.show();
