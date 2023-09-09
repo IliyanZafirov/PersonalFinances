@@ -9,7 +9,6 @@ import androidx.core.app.AlarmManagerCompat;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.main.personalfinances.enums.FuturePaymentCategory;
 import com.main.personalfinances.notification.NotificationReceiver;
 
 import java.time.LocalDateTime;

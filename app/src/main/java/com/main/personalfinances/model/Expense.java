@@ -3,8 +3,6 @@ package com.main.personalfinances.model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.main.personalfinances.enums.TransactionCategory;
-
 import java.time.LocalDate;
 
 

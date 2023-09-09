@@ -21,7 +21,7 @@ import com.main.personalfinances.R;
 import com.main.personalfinances.dao.FuturePaymentDao;
 import com.main.personalfinances.model.FuturePayment;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
-import com.main.personalfinances.enums.FuturePaymentCategory;
+import com.main.personalfinances.model.FuturePaymentCategory;
 import com.main.personalfinances.repositories.FuturePaymentRepository;
 
 import java.text.SimpleDateFormat;

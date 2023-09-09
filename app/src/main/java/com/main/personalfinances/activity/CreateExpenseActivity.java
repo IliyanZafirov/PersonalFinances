@@ -21,7 +21,7 @@ import com.main.personalfinances.repositories.BudgetRepository;
 import com.main.personalfinances.model.Expense;
 import com.main.personalfinances.repositories.ExpensesRepository;
 import com.main.personalfinances.db.PersonalFinancesDatabase;
-import com.main.personalfinances.enums.TransactionCategory;
+import com.main.personalfinances.model.TransactionCategory;
 
 import java.time.LocalDate;
 import java.util.concurrent.ExecutorService;

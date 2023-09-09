@@ -1,4 +1,4 @@
-package com.main.personalfinances.enums;
+package com.main.personalfinances.model;
 
 public enum TransactionCategory {
     BILLS,
